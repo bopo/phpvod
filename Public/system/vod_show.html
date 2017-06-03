@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>视频管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='__PUBLIC__/css/admin-style.css' />
+<script charset="utf-8" src="__PUBLIC__/jquery/1.11.3/jquery.min.js"></script>
+<script charset="utf-8" src="__PUBLIC__/js/admin.js"></script>
+<script language="javascript">
+function changeurl(cid,continu,player,stars,status){
+	self.location.href='?s=Admin-Vod-Show-cid-'+cid+'-continu-'+continu+'-player-'+player+'-stars-'+stars+'-status-'+status+'-iffilm-{$isfilm}-url-{$url}-type-{$type}-order-{$order}';
+}
+$(document).ready(function(){
+	$feifeicms.show.table();
+	$('#continu').click(function(){
+		changeurl('',1,'','','');
+	});	
+	$('#selectcid').change(function(){
+		changeurl($(this).val(),'','','','');
+	});
+	$('#selectplayer').change(function(){
+		changeurl('','',$(this).val(),'','');
+	});
+	$('#selectstars').change(function(){
+		changeurl('','','',$(this).val(),'');
+	});	
+});
+function createhtml(id){
+	var offset = $("#html_"+id).offset();
+	var left = (offset.left/2)+50;
+	var top = offset.top+15;
+	var html = $.ajax({
+		url: '?s=Admin-Create-vod_detail_id-ids-'+id,
+		async: false
+	}).responseText;
+	$("#htmltags").html(html);
+	$("#htmltags").css({left:left,top:top,display:""});	
+	window.setTimeout(function(){
+		$("#htmltags").hide();
+	},2000);
+}
+</script>
+<style>
+label.vod_input_show{ position:relative;margin-top:5px}
+label.vod_ids{ margin:0px 5px;}
+label.vod_play {float:right;color:#666;margin-right:5px}
+label sup {color:#990000;font-size:13px;}
+</style>
+</head>
+<body class="body">
+<include file="./Public/system/plus_createhtml.html" />
+<include file="./Public/system/plus_showpic.html" />
+<include file="./Public/system/plus_bg.html" />
+<form action="?s=Admin-Vod-Show" method="post" name="myform" id="myform">
+<table border="0" cellpadding="0" cellspacing="0" class="table">
+  <thead><tr><th class="r">
+  <span style="float:left">视频管理</span>
+  <span class="right"><a href="?s=Admin-Vod-Add" style="float:right">添加视频</a></span></th>
+  </tr></thead>
+  <tr>
+    <td class="tr ct"><input type="button" value="所有" class="submit" onClick="changeurl('','','','','');"> <input type="button" name="continu" id="continu" value="连载中" class="submit"> <input type="button" value="未审核" class="submit" onClick="changeurl('','','','',2);"> <input type="button" value="已审核" class="submit" onClick="changeurl('','','','',1);"> <select name="selectcid" id="selectcid">
+<option value="">按分类查看</option><volist name=":ff_mysql_list('sid:1;limit:999;order:list_pid asc,list_oid;sort:asc')" id="feifei"><option value="{$feifei.list_id}" <eq name="feifei.list_id" value="$cid">selected</eq>>{$feifei.list_name}</option><volist name="feifei['list_son']" id="feifei"><option value="{$feifei.list_id}" <eq name="feifei.list_id" value="$cid">selected</eq>>├ {$feifei.list_name}</option></volist></volist></select> <select name="selectplayer" id="selectplayer"><option value="0">按来源查看</option><volist name=":F('_feifeicms/player')" id="feifei" > <option value='{$key}' <eq name="key" value="$player">selected</eq>>{$feifei[0]}</option></volist></select> <select name="selectstars" id="selectstars"><option value="0">按星级查看</option><option value="5" <eq name="stars" value="5">selected</eq>>五星</option><option value="4" <eq name="stars" value="4">selected</eq>>四星</option><option value="3" <eq name="stars" value="3">selected</eq>>三星</option><option value="2" <eq name="stars" value="2">selected</eq>>二星</option><option value="1" <eq name="stars" value="1">selected</eq>>一星</option></select> <input type="text" name="wd" id="wd" maxlength="20" value="{$wd|default='输入关键字搜索影片'|urldecode}" onClick="this.select();" style="color:#666666"> <input type="button" value="搜索" class="submit" onClick="post('?s=Admin-Vod-Show');"></td>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="table">
+  <thead>
+    <tr class="ct">
+      <th class="l" ><span style="float:left">ID <eq name="orders" value="vod_id desc"><a href="?s=Admin-Vod-Show-cid-{$cid}-continu-{$continu}-player-{$player}-stars-{$stars}-status-{$status}-iffilm-{$isfilm}-url-{$url}-type-id-order-asc"><img src="__PUBLIC__/images/admin/up.gif" border="0" alt="点击按ID升序排列"></a><else /><a href="?s=Admin-Vod-Show-cid-{$cid}-continu-{$continu}-player-{$player}-stars-{$stars}-status-{$status}-iffilm-{$isfilm}-url-{$url}-type-id-order-desc"><img src="__PUBLIC__/images/admin/down.gif" border="0" alt="点击按ID降序排列"></a></eq></span>视频名称 服务器组</th>
+      <th class="l" width="60">人气<eq name="orders" value="vod_hits desc"><a href="?s=Admin-Vod-Show-cid-{$cid}-continu-{$continu}-player-{$player}-stars-{$stars}-status-{$status}-iffilm-{$isfilm}-url-{$url}-type-hits-order-asc"><img src="__PUBLIC__/images/admin/up.gif" border="0" alt="点击按人气升序排列"></a><else /><a href="?s=Admin-Vod-Show-cid-{$cid}-continu-{$continu}-player-{$player}-stars-{$stars}-status-{$status}-iffilm-{$isfilm}-url-{$url}-type-hits-order-desc"><img src="__PUBLIC__/images/admin/down.gif" border="0" alt="点击按人气降序排列"></a></eq></th>
+      <th class="l" width="60">评分<eq name="orders" value="vod_gold desc"><a href="?s=Admin-Vod-Show-cid-{$cid}-continu-{$continu}-player-{$player}-stars-{$stars}-status-{$status}-iffilm-{$isfilm}-url-{$url}-type-gold-order-asc"><img src="__PUBLIC__/images/admin/up.gif" border="0" alt="点击按评分升序排列"></a><else /><a href="?s=Admin-Vod-Show-cid-{$cid}-continu-{$continu}-player-{$player}-stars-{$stars}-status-{$status}-iffilm-{$isfilm}-url-{$url}-type-gold-order-desc"><img src="__PUBLIC__/images/admin/down.gif" border="0" alt="点击按评分降序排列"></a></eq></th>
+      <th class="l" width="80">视频权重<eq name="orders" value="vod_stars desc"><a href="?s=Admin-Vod-Show-cid-{$cid}-continu-{$continu}-player-{$player}-stars-{$stars}-status-{$status}-iffilm-{$isfilm}-url-{$url}-type-stars-order-asc"><img src="__PUBLIC__/images/admin/up.gif" border="0" alt="点击按星级升序排列"></a><else /><a href="?s=Admin-Vod-Show-cid-{$cid}-continu-{$continu}-player-{$player}-stars-{$stars}-status-{$status}-iffilm-{$isfilm}-url-{$url}-type-stars-order-desc"><img src="__PUBLIC__/images/admin/down.gif" border="0" alt="点击按星级降序排列"></a></eq></th>
+      <th class="l" width="90">更新时间<eq name="orders" value="vod_addtime desc"><a href="?s=Admin-Vod-Show-cid-{$cid}-continu-{$continu}-player-{$player}-stars-{$stars}-status-{$status}-iffilm-{$isfilm}-url-{$url}-type-addtime-order-asc"><img src="__PUBLIC__/images/admin/up.gif" border="0" alt="点击按时间升序排列"></a><else /><a href="?s=Admin-Vod-Show-cid-{$cid}-continu-{$continu}-player-{$player}-stars-{$stars}-status-{$status}-iffilm-{$isfilm}-url-{$url}-type-addtime-order-desc"><img src="__PUBLIC__/images/admin/down.gif" border="0" alt="点击按时间降序排列"></a></eq></th>
+      <th class="r" width="120">相关操作</th>
+    </tr>
+  </thead>
+  <volist name="list" id="feifei">
+  <tbody>
+  <tr>
+    <td class="l pd">
+    <label class="fl ids_check"><input name='ids[]' type='checkbox' value='{$feifei.vod_id}' class="noborder"></label>
+    <label class="fl ids_show">{$feifei.vod_id}</label>
+    <label class="fl"><if condition="C('url_html') gt 0"><a href="javascript:createhtml('{$feifei.vod_id}');" id="html_{$feifei.vod_id}"><font color="green">生成</font></a></if>『<a href="{$feifei.list_url}">{$feifei.list_name}</a>』<a href="{$feifei.vod_url}" onMouseOver="showpic(event,'{$feifei.vod_pic}','{&upload_path}/');" onMouseOut="hiddenpic();" target="_blank">{$feifei.vod_name}</a></label>
+    <label id="ct_{$feifei.vod_id}" class="fl" style="padding-left:5px"><eq name="feifei.vod_isend" value="1"><sup><gt name="feifei.vod_total" value="0">（全）</gt></sup></eq> <sup onClick="setcontinu({$feifei.vod_id},'{$feifei.vod_continu}');" style=" cursor:pointer">{$feifei.vod_continu|default='<img src="__PUBLIC__/images/admin/ct.gif">'}</sup></label>
+    <label class="fr vod_play">{$feifei.vod_play|str_replace='$$$',' ',###}</label>
+    </td>
+    <td class="l ct">{$feifei.vod_hits}</td>
+    <td class="l ct">{$feifei.vod_gold}</td>
+    <td class="l ct"><volist name="feifei['vod_starsarr']" id="ajaxstar"><img src="__PUBLIC__/images/admin/star{$ajaxstar}.gif" onClick="setstars('Vod',{$feifei.vod_id},{$i});" id="star_{$feifei.vod_id}_{$i}" class="navpoint"></volist></td>
+    <td class="l ct">{$feifei.vod_addtime|date='Y.m.d',###}</td>
+    <td class="r ct"><a href="?s=Admin-Vod-Add-cid-{$feifei.vod_cid}-id-{$feifei.vod_id}" title="点击修改影片">编辑</a> <a href="?s=Admin-Vod-Del-id-{$feifei.vod_id}" onClick="return confirm('确定删除该视频吗?')" title="点击删除影片">删除</a>  <eq name="feifei.vod_status" value="1"><a href="?s=Admin-Vod-Status-id-{$feifei.vod_id}-value-0" title="点击隐藏影片">隐藏</a><else /><a href="?s=Admin-Vod-Status-id-{$feifei.vod_id}-value-1" title="点击显示影片"><font color="red">显示</font></a></eq> <neq name="feifei.vod_inputer" value="feifeicms"><a href="?s=Admin-Vod-Inputer-id-{$feifei.vod_id}-value-feifeicms" title="点击锁定后采集的时候将不更新">锁定</a><else /><a href="?s=Admin-Vod-Inputer-id-{$feifei.vod_id}-value-" title="点击解锁"><font color="red">解锁</font></a></neq></td>
+  </tr>
+  </tbody>
+  </volist>
+    <tr>
+      <td colspan="9" class="r pages">{$pages}</td>
+    </tr>   
+  <tfoot>
+    <tr>
+      <td colspan="9" class="r"><input type="button" value="全选" class="submit" onClick="checkall('all');"> <input name="" type="button" value="反选" class="submit" onClick="checkall();"> <eq name="Think.config.url_html" value="1"><input type="button" value="生成静态" name="createhtml" id="createhtml" class="submit" onClick="post('?s=Admin-Vod-Create');"/></eq> <input type="button" value="批量删除" class="submit" onClick="if(confirm('删除后将无法还原,确定要删除吗?')){post('?s=Admin-Vod-Delall');}else{return false;}"> <input type="button" value="批量移动" class="submit" onClick="$('#psetcid').show();"> <span style="display:none" id="psetcid"><select name="pestcid"><option value="">选择目标分类</option><volist name=":ff_mysql_list('sid:1;limit:999;order:list_pid asc,list_oid;sort:asc')" id="feifei"><option value="{$feifei.list_id}" <eq name="feifei.list_id" value="$cid">selected</eq>>{$feifei.list_name}</option><volist name="feifei['list_son']" id="feifei"><option value="{$feifei.list_id}" <eq name="feifei.list_id" value="$cid">selected</eq>>├ {$feifei.list_name}</option></volist></volist></select> <input type="button" class="submit" value="确定转移" onClick="post('?s=Admin-Vod-Pestcid');"/></span></td>
+    </tr>  
+  </tfoot>
+  {__NOTOKEN__}
+  </form>
+</table>
+<include file="./Public/system/footer.html" />
+</body>
+</html>

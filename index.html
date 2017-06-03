@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="renderer" content="webkit">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" href="/Public/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="/Tpl/default/system.css?3.3.170516">
+<script src="/Public/jquery/1.11.3/jquery.min.js"></script>
+<script src="/Public/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<!--[if lt IE 9]>
+<script src="/Public/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="/Public/respond/1.4.2/respond.min.js"></script>
+<![endif]--><script>var cms = {
+root:"/",id:"",page:"1",domain_m:""
+}</script><script src="/Tpl/default/system.js?3.3.170516"></script>
+<title>飞飞影视导航系统首页</title>
+<meta name="keywords" content="飞飞影视导航系统,PHP电影程序,电影网站程序">
+<meta name="description" content="努力打造飞飞影视导航系统为最好的PHP影视系统!">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<body>
+<div class="ff-header hidden-xs">
+<div class="container">
+	<div class="row">
+  	<div class="col-xs-3">
+    	<a href="/" class="ff-logo"></a>
+    </div>
+  	<div class="col-xs-7">
+    	<form class="form-horizontal ff-search" id="ff-search" role="search" action="/index.php?s=vod-search-name" method="post">
+        <div class="form-group">
+        	<div class="col-sm-9">
+          <input type="text" class="form-control" id="ff-wd" name="wd" placeholder="Search">
+          </div>
+          <div class="col-sm-3 ff-col-0">
+          	<button type="submit" class="btn btn-default" data-module="vod" data-action="/index.php?s=/vod-search-name-FFWD.html">搜视频</button>
+        		<button type="submit" class="btn btn-default btn-success" data-module="news" data-action="/index.php?s=/news-search-name-FFWD.html">搜资讯</button>
+          </div>
+        </div>
+      </form>
+    </div><!-- /.col-xs-5 -->
+  </div><!-- /.row -->
+</div>
+</div>
+<nav class="navbar navbar-inverse visible-lg visible-md" role="navigation">
+  <div class="container">
+      <ul class="nav navbar-nav navbar-left">
+                	             <li id="nav-index"><a href="/">首页</a></li>        	             <li id="nav-tv"><a href="/?s=vod-show-id-2.html">电视剧</a></li>        	             <li id="nav-dianying"><a href="/?s=vod-show-id-1.html">电影</a></li>        	             <li id="nav-dongman"><a href="/?s=vod-show-id-3.html">动漫</a></li>        	             <li id="nav-zongyi"><a href="/?s=vod-show-id-4.html">综艺</a></li>        	             <li id="nav-gaoxiao"><a href="/?s=vod-show-id-5.html">短视频</a></li>        	             <li id="nav-special"><a href="/?s=special-show-p-1.html">专题</a></li>        	             <li id="nav-news"><a href="/?s=news-show-id-6.html">资讯</a></li>        	             <li id="nav-guestbook"><a href="/?s=forum-guestbook.html">留言</a></li>      </ul>
+      <p class="navbar-text navbar-right"><span class="glyphicon glyphicon-phone" data-toggle="popover" data-trigger="hover" data-placement="left" data-container="body" data-title="手机浏览请扫瞄二维码"></span></p>
+      <form class="navbar-form navbar-right ff-search" id="ff-search" role="search" action="/index.php?s=vod-search-name" method="post">
+        <div class="form-group">
+          <input type="text" class="form-control" id="ff-wd" name="wd" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default" data-module="vod" data-action="/index.php?s=/vod-search-name-FFWD.html">搜索</button>
+        <button type="submit" class="btn btn-default btn-success" data-module="news" data-action="/index.php?s=/news-search-name-FFWD.html">资讯</button>
+      </form>  </div><!-- /.container -->
+</nav><!-- /.navbar -->
+<script>feifei.nav.active('create');</script><!-- mobile nav star-->
+<div class="container ff-nav visible-xs visible-sm">
+	<div class="row">
+    <ul class="list-inline">
+      <li class="col-xs-2 text-left">
+        <h4><a href="javascript:;" id="ff-goback"><span class="glyphicon glyphicon-chevron-left"></span></a></h4>
+      </li>
+      <li class="col-xs-8 text-center">
+        <h4><a class="ff-nav-home" href="/">飞飞影视导航系统</a></h4>
+      </li>
+      <li class="col-xs-1">
+        <h4><a id="ff-nav-btn" href="javasript:;"><span class="glyphicon glyphicon-align-justify"></span></a></h4>
+      </li>
+      <li class="col-xs-1">
+        <h4><a href="/index.php?s=/ajax-search.html"><span class="glyphicon glyphicon-search"></span></a></h4>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- mobile nav end-->
+<div class="container ff-bg">
+  <div class="row">
+    <div class="col-md-8 ff-slide-pic">
+      <div class="carousel slide" id="ff-slide">
+  <!-- 轮播（Carousel）指标 -->
+  <ol class="carousel-indicators">
+      </ol>   
+  <!-- 轮播（Carousel）项目 -->
+  <div class="carousel-inner">
+      </div>
+  <!-- 轮播（Carousel）导航 -->
+  <a class="carousel-control left" href="#ff-slide" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+  <a class="carousel-control right" href="#ff-slide" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+</div>
+<script>$('#ff-slide').carousel({interval: 2000});</script>
+    </div>
+    <ol class="col-md-4 ff-slide-new visible-lg visible-md">
+      <li>
+        <a href="/index.php?s=/vod-read-id-103.html">欢乐颂第2部</a>
+        <small class="pull-right">06-02</small>
+      </li><li>
+        <a href="/index.php?s=/vod-read-id-117.html">龙珠传奇</a>
+        <small class="pull-right">06-02</small>
+      </li><li>
+        <a href="/index.php?s=/vod-read-id-106.html">传奇故事</a>
+        <small class="pull-right">06-02</small>
+      </li><li>
+        <a href="/index.php?s=/vod-read-id-107.html">致富经</a>
+        <small class="pull-right">06-02</small>
+      </li><li>
+        <a href="/index.php?s=/vod-read-id-108.html">军事纪实</a>
+        <small class="pull-right">06-02</small>
+      </li><li>
+        <a href="/index.php?s=/vod-read-id-109.html">档案 上海纪实版</a>
+        <small class="pull-right">06-02</small>
+      </li><li>
+        <a href="/index.php?s=/vod-read-id-110.html">大声说出来</a>
+        <small class="pull-right">06-02</small>
+      </li>    </ol>
+  </div>
+</div>
+<div class="show" id="ff-nav-btn-item">
+<div class="clearfix"></div> 
+<div class="container ff-bg visible-xs visible-sm">
+  <ul class="row list-unstyled text-center ff-nav-mobile">
+    <li class="col-xs-3">
+      <a href="/" class="btn btn-success btn-block">首页</a>
+    </li><li class="col-xs-3">
+      <a href="/?s=vod-show-id-2.html" class="btn btn-success btn-block">电视剧</a>
+    </li><li class="col-xs-3">
+      <a href="/?s=vod-show-id-1.html" class="btn btn-success btn-block">电影</a>
+    </li><li class="col-xs-3">
+      <a href="/?s=vod-show-id-3.html" class="btn btn-success btn-block">动漫</a>
+    </li><li class="col-xs-3">
+      <a href="/?s=vod-show-id-4.html" class="btn btn-success btn-block">综艺</a>
+    </li><li class="col-xs-3">
+      <a href="/?s=vod-show-id-5.html" class="btn btn-success btn-block">短视频</a>
+    </li><li class="col-xs-3">
+      <a href="/?s=special-show-p-1.html" class="btn btn-success btn-block">专题</a>
+    </li><li class="col-xs-3">
+      <a href="/?s=news-show-id-6.html" class="btn btn-success btn-block">资讯</a>
+    </li><li class="col-xs-3">
+      <a href="/?s=forum-guestbook.html" class="btn btn-success btn-block">留言</a>
+    </li>  </ul>
+</div>
+<div class="clearfix ff-clearfix"></div>
+</div>
+<div class="container ff-bg">
+  <div class="row">
+    <div class="col-md-8 ff-col index-left">
+    <div class="page-header">
+      <h4>
+        <span class="glyphicon glyphicon-film ff-text"></span> <a href="/index.php?s=/vod-show-id-1.html">电影</a>
+        <small class="hidden-xs"><a href="/index.php?s=/vod-type-id-1-type--area-%E5%86%85%E5%9C%B0-year--star--state--order-hits.html">内地</a><a href="/index.php?s=/vod-type-id-1-type--area-%E7%BE%8E%E5%9B%BD-year--star--state--order-hits.html">美国</a><a href="/index.php?s=/vod-type-id-1-type--area-%E9%A6%99%E6%B8%AF-year--star--state--order-hits.html">香港</a><a href="/index.php?s=/vod-type-id-1-type--area-%E5%8F%B0%E6%B9%BE-year--star--state--order-hits.html">台湾</a><a href="/index.php?s=/vod-type-id-1-type--area-%E9%9F%A9%E5%9B%BD-year--star--state--order-hits.html">韩国</a><a href="/index.php?s=/vod-type-id-1-type--area-%E6%97%A5%E6%9C%AC-year--star--state--order-hits.html">日本</a><a href="/index.php?s=/vod-type-id-1-type--area-%E6%B3%95%E5%9B%BD-year--star--state--order-hits.html">法国</a><a href="/index.php?s=/vod-type-id-1-type--area-%E8%8B%B1%E5%9B%BD-year--star--state--order-hits.html">英国</a><a href="/index.php?s=/vod-type-id-1-type--area-%E5%BE%B7%E5%9B%BD-year--star--state--order-hits.html">德国</a><a href="/index.php?s=/vod-type-id-1-type--area-%E6%B3%B0%E5%9B%BD-year--star--state--order-hits.html">泰国</a><a href="/index.php?s=/vod-type-id-1-type--area-%E5%8D%B0%E5%BA%A6-year--star--state--order-hits.html">印度</a><a href="/index.php?s=/vod-type-id-1-type--area--year--star--state--order-hits.html">更多</a></small>
+        <small class="pull-right visible-xs"><a href="/index.php?s=/vod-type-id-1-type--area--year--star--state--order-hits.html">更多</a></small>
+      </h4>
+    </div>
+    <!-- -->
+    <ul class="list-unstyled">
+          </ul>
+    </div><!--lg-8end -->
+    <div class="col-md-4 ff-col index-right visible-lg visible-md">
+      <div class="page-header">
+        <h4><span class="glyphicon glyphicon-signal ff-text"></span> 热播榜</h4>
+      </div>
+      <ol class="ff-vod-hot">
+              </ol>
+      <ul class="list-unstyled ff-vod-type">
+        <li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-1-type-%E5%96%9C%E5%89%A7-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">喜剧</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-1-type-%E7%88%B1%E6%83%85-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">爱情</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-1-type-%E6%81%90%E6%80%96-area--year--star--state--order-hits.html" class="btn btn-sm btn-success">恐怖</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-1-type-%E5%8A%A8%E4%BD%9C-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">动作</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-1-type-%E7%A7%91%E5%B9%BB-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">科幻</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-1-type-%E5%89%A7%E6%83%85-area--year--star--state--order-hits.html" class="btn btn-sm btn-success">剧情</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-1-type-%E6%88%98%E4%BA%89-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">战争</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-1-type-%E8%AD%A6%E5%8C%AA-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">警匪</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-1-type-%E7%8A%AF%E7%BD%AA-area--year--star--state--order-hits.html" class="btn btn-sm btn-success">犯罪</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-1-type-%E5%8A%A8%E7%94%BB-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">动画</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-1-type-%E5%A5%87%E5%B9%BB-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">奇幻</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-1-type-%E6%AD%A6%E4%BE%A0-area--year--star--state--order-hits.html" class="btn btn-sm btn-success">武侠</a></li>      </ul>
+    </div><!--lg-4 end -->
+  </div><!--row end -->
+</div>
+<div class="clearfix ff-clearfix"></div><div class="container ff-bg">
+  <div class="row">
+    <div class="col-md-8 ff-col index-left">
+    <div class="page-header">
+      <h4>
+        <span class="glyphicon glyphicon-film ff-text"></span> <a href="/index.php?s=/vod-show-id-2.html">电视剧</a>
+        <small class="hidden-xs"><a href="/index.php?s=/vod-type-id-2-type--area-%E5%86%85%E5%9C%B0-year--star--state--order-hits.html">内地</a><a href="/index.php?s=/vod-type-id-2-type--area-%E5%8F%B0%E6%B9%BE-year--star--state--order-hits.html">台湾</a><a href="/index.php?s=/vod-type-id-2-type--area-%E9%A6%99%E6%B8%AF-year--star--state--order-hits.html">香港</a><a href="/index.php?s=/vod-type-id-2-type--area-%E9%9F%A9%E5%9B%BD-year--star--state--order-hits.html">韩国</a><a href="/index.php?s=/vod-type-id-2-type--area-%E7%BE%8E%E5%9B%BD-year--star--state--order-hits.html">美国</a><a href="/index.php?s=/vod-type-id-2-type--area-%E6%B3%B0%E5%9B%BD-year--star--state--order-hits.html">泰国</a><a href="/index.php?s=/vod-type-id-2-type--area-%E6%97%A5%E6%9C%AC-year--star--state--order-hits.html">日本</a><a href="/index.php?s=/vod-type-id-2-type--area-%E8%8B%B1%E5%9B%BD-year--star--state--order-hits.html">英国</a><a href="/index.php?s=/vod-type-id-2-type--area-%E6%96%B0%E5%8A%A0%E5%9D%A1-year--star--state--order-hits.html">新加坡</a><a href="/index.php?s=/vod-type-id-2-type--area-%E5%85%B6%E5%AE%83-year--star--state--order-hits.html">其它</a><a href="/index.php?s=/vod-type-id-2-type--area--year--star--state--order-hits.html">更多</a></small>
+        <small class="pull-right visible-xs"><a href="/index.php?s=/vod-type-id-2-type--area--year--star--state--order-hits.html">更多</a></small>
+      </h4>
+    </div>
+    <!-- -->
+    <ul class="list-unstyled">
+            <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-103.html">
+        <img class="img-responsive ff-img" data-original="http://hiphotos.baidu.com/baidu/pic/item/3801213fb80e7bec638408c8252eb9389b506bb8.jpg" alt="欢乐颂第2部">
+        <p class="ff-continu"><span class="badge">
+       	 更新至39集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-103.html" title="欢乐颂第2部">欢乐颂第2部</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-117.html">
+        <img class="img-responsive ff-img" data-original="http://hiphotos.baidu.com/baidu/pic/item/0ff41bd5ad6eddc439d6e4d433dbb6fd526633ef.jpg" alt="龙珠传奇">
+        <p class="ff-continu"><span class="badge">
+       	 更新至48集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-117.html" title="龙珠传奇">龙珠传奇</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-95.html">
+        <img class="img-responsive ff-img" data-original="http://t1.baidu.com/it/u=1346117952,3119586876&fm=20.jpg" alt="职场是个技术活">
+        <p class="ff-continu"><span class="badge">
+       	 更新至39集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-95.html" title="职场是个技术活">职场是个技术活</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-96.html">
+        <img class="img-responsive ff-img" data-original="http://t1.baidu.com/it/u=3209400152,601020625&fm=20.jpg" alt="三生三世十里桃花">
+        <p class="ff-continu"><span class="badge">
+58集全
+      </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-96.html" title="三生三世十里桃花">三生三世十里桃花</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-97.html">
+        <img class="img-responsive ff-img" data-original="http://hiphotos.baidu.com/baidu/pic/item/0df3d7ca7bcb0a460641fb1e6163f6246b60afb2.jpg" alt="思美人">
+        <p class="ff-continu"><span class="badge">
+       	 更新至58集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-97.html" title="思美人">思美人</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-98.html">
+        <img class="img-responsive ff-img" data-original="http://t3.baidu.com/it/u=3350342817,4052468048&fm=20.jpg" alt="人民的名义 未删减版">
+        <p class="ff-continu"><span class="badge">
+55集全
+      </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-98.html" title="人民的名义 未删减版">人民的名义 未删减版</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-101.html">
+        <img class="img-responsive ff-img" data-original="http://t2.baidu.com/it/u=2698790821,1936419186&fm=20.jpg" alt="思美人 网络版">
+        <p class="ff-continu"><span class="badge">
+       	 更新至64集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-101.html" title="思美人 网络版">思美人 网络版</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-63.html">
+        <img class="img-responsive ff-img" data-original="http://t2.baidu.com/it/u=1801588571,3736125968&fm=20.jpg" alt="伪装者 未删减版">
+        <p class="ff-continu"><span class="badge">
+41集全
+      </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-63.html" title="伪装者 未删减版">伪装者 未删减版</a>
+      </h4>
+      </li><li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot hidden-md hidden-lg">
+            <a href="/index.php?s=/vod-read-id-64.html">
+        <img class="img-responsive ff-img" data-original="http://t1.baidu.com/it/u=1272877213,1342401077&fm=20" alt="欢乐颂第1部">
+        <p class="ff-continu"><span class="badge">
+42集全
+      </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-64.html" title="欢乐颂第1部">欢乐颂第1部</a>
+      </h4>
+      </li><li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot hidden-md hidden-lg">
+            <a href="/index.php?s=/vod-read-id-55.html">
+        <img class="img-responsive ff-img" data-original="http://t2.baidu.com/it/u=3735496626,3364929490&fm=20.jpg" alt="铁血将军">
+        <p class="ff-continu"><span class="badge">
+32集全
+      </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-55.html" title="铁血将军">铁血将军</a>
+      </h4>
+      </li><li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot hidden-md hidden-lg">
+            <a href="/index.php?s=/vod-read-id-32.html">
+        <img class="img-responsive ff-img" data-original="http://t1.baidu.com/it/u=4240039243,2249415017&fm=20.jpg" alt="远征远征">
+        <p class="ff-continu"><span class="badge">
+38集全
+      </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-32.html" title="远征远征">远征远征</a>
+      </h4>
+      </li><li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot hidden-md hidden-lg">
+            <a href="/index.php?s=/vod-read-id-33.html">
+        <img class="img-responsive ff-img" data-original="http://hiphotos.baidu.com/baidu/pic/item/a50f4bfbfbedab64bc745402fe36afc378311ee9.jpg" alt="择天记">
+        <p class="ff-continu"><span class="badge">
+56集全
+      </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-33.html" title="择天记">择天记</a>
+      </h4>
+      </li>    </ul>
+    </div><!--lg-8end -->
+    <div class="col-md-4 ff-col index-right visible-lg visible-md">
+      <div class="page-header">
+        <h4><span class="glyphicon glyphicon-signal ff-text"></span> 热播榜</h4>
+      </div>
+      <ol class="ff-vod-hot">
+        <li>
+          <a href="/index.php?s=/vod-read-id-32.html">远征远征</a>
+          <small class="pull-right"><strong>8</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-39.html">女儿红</a>
+          <small class="pull-right"><strong>8</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-102.html">白鹿原</a>
+          <small class="pull-right"><strong>8</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-97.html">思美人</a>
+          <small class="pull-right"><strong>7</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-117.html">龙珠传奇</a>
+          <small class="pull-right"><strong>7</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-63.html">伪装者 未删减版</a>
+          <small class="pull-right"><strong>6</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-64.html">欢乐颂第1部</a>
+          <small class="pull-right"><strong>6</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-119.html">深夜食堂第4季</a>
+          <small class="pull-right"><strong>6</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-104.html">太极宗师之太极门</a>
+          <small class="pull-right"><strong>5</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-33.html">择天记</a>
+          <small class="pull-right"><strong>4</strong>.0</small>
+        </li>      </ol>
+      <ul class="list-unstyled ff-vod-type">
+        <li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-2-type-%E8%A8%80%E6%83%85-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">言情</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-2-type-%E5%81%B6%E5%83%8F-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">偶像</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-2-type-%E9%83%BD%E5%B8%82-area--year--star--state--order-hits.html" class="btn btn-sm btn-success">都市</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-2-type-%E6%88%98%E4%BA%89-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">战争</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-2-type-%E6%82%AC%E7%96%91-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">悬疑</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-2-type-%E4%BC%A6%E7%90%86-area--year--star--state--order-hits.html" class="btn btn-sm btn-success">伦理</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-2-type-%E6%83%8A%E6%82%9A-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">惊悚</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-2-type-%E7%BD%91%E7%BB%9C%E5%89%A7-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">网络剧</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-2-type-%E8%AD%A6%E5%8C%AA-area--year--star--state--order-hits.html" class="btn btn-sm btn-success">警匪</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-2-type-%E5%8F%A4%E8%A3%85-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">古装</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-2-type-%E6%AD%A6%E4%BE%A0-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">武侠</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-2-type-%E7%A5%9E%E8%AF%9D-area--year--star--state--order-hits.html" class="btn btn-sm btn-success">神话</a></li>      </ul>
+    </div><!--lg-4 end -->
+  </div><!--row end -->
+</div>
+<div class="clearfix ff-clearfix"></div><div class="container ff-bg">
+  <div class="row">
+    <div class="col-md-8 ff-col index-left">
+    <div class="page-header">
+      <h4>
+        <span class="glyphicon glyphicon-film ff-text"></span> <a href="/index.php?s=/vod-show-id-3.html">动漫</a>
+        <small class="hidden-xs"><a href="/index.php?s=/vod-type-id-3-type--area-%E5%86%85%E5%9C%B0-year--star--state--order-hits.html">内地</a><a href="/index.php?s=/vod-type-id-3-type--area-%E6%97%A5%E6%9C%AC-year--star--state--order-hits.html">日本</a><a href="/index.php?s=/vod-type-id-3-type--area-%E7%BE%8E%E5%9B%BD-year--star--state--order-hits.html">美国</a><a href="/index.php?s=/vod-type-id-3-type--area-%E9%9F%A9%E5%9B%BD-year--star--state--order-hits.html">韩国</a><a href="/index.php?s=/vod-type-id-3-type--area-%E5%8F%B0%E6%B9%BE-year--star--state--order-hits.html">台湾</a><a href="/index.php?s=/vod-type-id-3-type--area-%E9%A6%99%E6%B8%AF-year--star--state--order-hits.html">香港</a><a href="/index.php?s=/vod-type-id-3-type--area--year--star--state--order-hits.html">更多</a></small>
+        <small class="pull-right visible-xs"><a href="/index.php?s=/vod-type-id-3-type--area--year--star--state--order-hits.html">更多</a></small>
+      </h4>
+    </div>
+    <!-- -->
+    <ul class="list-unstyled">
+            <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-65.html">
+        <img class="img-responsive ff-img" data-original="http://t1.baidu.com/it/u=3002237909,2632520950&fm=20.jpg" alt="谭雅战记">
+        <p class="ff-continu"><span class="badge">
+          更新至13集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-65.html" title="谭雅战记">谭雅战记</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-38.html">
+        <img class="img-responsive ff-img" data-original="http://t3.baidu.com/it/u=355764154,3334139500&fm=20.jpg" alt="美妙天堂 偶像时间">
+        <p class="ff-continu"><span class="badge">
+          更新至9集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-38.html" title="美妙天堂 偶像时间">美妙天堂 偶像时间</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-44.html">
+        <img class="img-responsive ff-img" data-original="http://t2.baidu.com/it/u=3071146053,2950599364&fm=20.jpg" alt="为美好的世界献上祝福！第2季">
+        <p class="ff-continu"><span class="badge">
+          更新至10集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-44.html" title="为美好的世界献上祝福！第2季">为美好的世界献上祝福</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-31.html">
+        <img class="img-responsive ff-img" data-original="http://4img.mgtv.com/preview/internettv/sp_images/ott/2017/dongman/314036/20170407110508100-new.jpg_220x308.jpg" alt="夏目友人帐第6季">
+        <p class="ff-continu"><span class="badge">
+          更新至8集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-31.html" title="夏目友人帐第6季">夏目友人帐第6季</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-5.html">
+        <img class="img-responsive ff-img" data-original="http://t2.baidu.com/it/u=1618794280,2578314300&fm=20.jpg" alt="博人传之火影忍者新时代">
+        <p class="ff-continu"><span class="badge">
+          更新至9集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-5.html" title="博人传之火影忍者新时代">博人传之火影忍者新时</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-6.html">
+        <img class="img-responsive ff-img" data-original="http://t1.baidu.com/it/u=4239775011,2540929152&fm=20.jpg" alt="银之守墓人">
+        <p class="ff-continu"><span class="badge">
+          更新至9集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-6.html" title="银之守墓人">银之守墓人</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-7.html">
+        <img class="img-responsive ff-img" data-original="http://t3.baidu.com/it/u=2653419306,2012587394&fm=20.jpg" alt="民间鬼术第3季">
+        <p class="ff-continu"><span class="badge">
+          更新至2集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-7.html" title="民间鬼术第3季">民间鬼术第3季</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-8.html">
+        <img class="img-responsive ff-img" data-original="http://t3.baidu.com/it/u=3026621795,2250247044&fm=20.jpg" alt="火线小剧场">
+        <p class="ff-continu"><span class="badge">
+          更新至23集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-8.html" title="火线小剧场">火线小剧场</a>
+      </h4>
+      </li><li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot hidden-md hidden-lg">
+            <a href="/index.php?s=/vod-read-id-9.html">
+        <img class="img-responsive ff-img" data-original="http://t2.baidu.com/it/u=3810969303,1948584613&fm=20.jpg" alt="猪猪侠之超星萌宠第13季">
+        <p class="ff-continu"><span class="badge">
+          更新至24集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-9.html" title="猪猪侠之超星萌宠第13季">猪猪侠之超星萌宠第1</a>
+      </h4>
+      </li><li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot hidden-md hidden-lg">
+            <a href="/index.php?s=/vod-read-id-43.html">
+        <img class="img-responsive ff-img" data-original="http://t2.baidu.com/it/u=3532535127,2967106528&fm=20.jpg" alt="我的英雄学院第2季">
+        <p class="ff-continu"><span class="badge">
+          更新至10集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-43.html" title="我的英雄学院第2季">我的英雄学院第2季</a>
+      </h4>
+      </li><li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot hidden-md hidden-lg">
+            <a href="/index.php?s=/vod-read-id-58.html">
+        <img class="img-responsive ff-img" data-original="http://t1.baidu.com/it/u=3296874105,2334986205&fm=20.jpg" alt="有顶天家族第2季">
+        <p class="ff-continu"><span class="badge">
+          更新至8集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-58.html" title="有顶天家族第2季">有顶天家族第2季</a>
+      </h4>
+      </li><li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot hidden-md hidden-lg">
+            <a href="/index.php?s=/vod-read-id-72.html">
+        <img class="img-responsive ff-img" data-original="http://t1.baidu.com/it/u=544421996,2683494844&fm=20.jpg" alt="路人女主的养成方法第2季">
+        <p class="ff-continu"><span class="badge">
+          更新至9集
+           </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-72.html" title="路人女主的养成方法第2季">路人女主的养成方法第</a>
+      </h4>
+      </li>    </ul>
+    </div><!--lg-8end -->
+    <div class="col-md-4 ff-col index-right visible-lg visible-md">
+      <div class="page-header">
+        <h4><span class="glyphicon glyphicon-signal ff-text"></span> 热播榜</h4>
+      </div>
+      <ol class="ff-vod-hot">
+        <li>
+          <a href="/index.php?s=/vod-read-id-8.html">火线小剧场</a>
+          <small class="pull-right"><strong>9</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-72.html">路人女主的养成方法第2季</a>
+          <small class="pull-right"><strong>9</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-9.html">猪猪侠之超星萌宠第13季</a>
+          <small class="pull-right"><strong>8</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-5.html">博人传之火影忍者新时代</a>
+          <small class="pull-right"><strong>7</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-7.html">民间鬼术第3季</a>
+          <small class="pull-right"><strong>6</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-44.html">为美好的世界献上祝福！第2季</a>
+          <small class="pull-right"><strong>6</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-6.html">银之守墓人</a>
+          <small class="pull-right"><strong>4</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-43.html">我的英雄学院第2季</a>
+          <small class="pull-right"><strong>4</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-58.html">有顶天家族第2季</a>
+          <small class="pull-right"><strong>4</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-65.html">谭雅战记</a>
+          <small class="pull-right"><strong>4</strong>.0</small>
+        </li>      </ol>
+      <ul class="list-unstyled ff-vod-type">
+        <li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-3-type-%E7%83%AD%E8%A1%80-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">热血</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-3-type-%E7%88%B1%E6%83%85-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">爱情</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-3-type-%E6%90%9E%E7%AC%91-area--year--star--state--order-hits.html" class="btn btn-sm btn-success">搞笑</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-3-type-%E7%BE%8E%E5%A5%B3-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">美女</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-3-type-%E5%B0%91%E5%84%BF-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">少儿</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-3-type-%E4%BA%B2%E5%AD%90-area--year--star--state--order-hits.html" class="btn btn-sm btn-success">亲子</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-3-type-%E9%AD%94%E6%B3%95-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">魔法</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-3-type-%E8%BF%90%E5%8A%A8-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">运动</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-3-type-%E6%9C%BA%E6%88%98-area--year--star--state--order-hits.html" class="btn btn-sm btn-success">机战</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-3-type-%E7%A7%91%E5%B9%BB-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">科幻</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-3-type-%E6%A0%A1%E5%9B%AD-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">校园</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-3-type-%E5%8A%A8%E7%89%A9-area--year--star--state--order-hits.html" class="btn btn-sm btn-success">动物</a></li>      </ul>
+    </div><!--lg-4 end -->
+  </div><!--row end -->
+</div>
+<div class="clearfix ff-clearfix"></div><div class="container ff-bg">
+  <div class="row">
+    <div class="col-md-8 ff-col index-left">
+    <div class="page-header">
+      <h4>
+        <span class="glyphicon glyphicon-film ff-text"></span> <a href="/index.php?s=/vod-show-id-4.html">综艺</a>
+        <small class="hidden-xs"><a href="/index.php?s=/vod-type-id-4-type--area-%E9%A6%99%E6%B8%AF-year--star--state--order-hits.html">香港</a><a href="/index.php?s=/vod-type-id-4-type--area-%E7%BE%8E%E5%9B%BD-year--star--state--order-hits.html">美国</a><a href="/index.php?s=/vod-type-id-4-type--area-%E5%A4%A7%E9%99%86-year--star--state--order-hits.html">大陆</a><a href="/index.php?s=/vod-type-id-4-type--area-%E9%9F%A9%E5%9B%BD-year--star--state--order-hits.html">韩国</a><a href="/index.php?s=/vod-type-id-4-type--area-%E5%8F%B0%E6%B9%BE-year--star--state--order-hits.html">台湾</a><a href="/index.php?s=/vod-type-id-4-type--area-%E6%97%A5%E6%9C%AC-year--star--state--order-hits.html">日本</a><a href="/index.php?s=/vod-type-id-4-type--area-%E5%85%B6%E4%BB%96-year--star--state--order-hits.html">其他</a><a href="/index.php?s=/vod-type-id-4-type--area--year--star--state--order-hits.html">更多</a></small>
+        <small class="pull-right visible-xs"><a href="/index.php?s=/vod-type-id-4-type--area--year--star--state--order-hits.html">更多</a></small>
+      </h4>
+    </div>
+    <!-- -->
+    <ul class="list-unstyled">
+            <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-106.html">
+        <img class="img-responsive ff-img" data-original="http://t1.baidu.com/it/u=1776836502,642200622&fm=20.jpg" alt="传奇故事">
+        <p class="ff-continu"><span class="badge">
+2017-04-23  </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-106.html" title="传奇故事">传奇故事</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-107.html">
+        <img class="img-responsive ff-img" data-original="http://t3.baidu.com/it/u=3781824011,3244515276&fm=20.jpg" alt="致富经">
+        <p class="ff-continu"><span class="badge">
+2017-06-01  </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-107.html" title="致富经">致富经</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-108.html">
+        <img class="img-responsive ff-img" data-original="http://t1.baidu.com/it/u=1230406989,4187259723&fm=20.jpg" alt="军事纪实">
+        <p class="ff-continu"><span class="badge">
+2017-06-01  </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-108.html" title="军事纪实">军事纪实</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-109.html">
+        <img class="img-responsive ff-img" data-original="http://t2.baidu.com/it/u=2371499886,424660369&fm=20.jpg" alt="档案 上海纪实版">
+        <p class="ff-continu"><span class="badge">
+2017-06-01  </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-109.html" title="档案 上海纪实版">档案 上海纪实版</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-110.html">
+        <img class="img-responsive ff-img" data-original="http://t3.baidu.com/it/u=1603991900,3905097339&fm=20.jpg" alt="大声说出来">
+        <p class="ff-continu"><span class="badge">
+2017-06-01  </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-110.html" title="大声说出来">大声说出来</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-112.html">
+        <img class="img-responsive ff-img" data-original="http://t1.baidu.com/it/u=238579337,1862290186&fm=20.jpg" alt="生活改造家">
+        <p class="ff-continu"><span class="badge">
+2017-05-25  </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-112.html" title="生活改造家">生活改造家</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-113.html">
+        <img class="img-responsive ff-img" data-original="http://t3.baidu.com/it/u=3085318501,4121724577&fm=20.jpg" alt="你会怎么做">
+        <p class="ff-continu"><span class="badge">
+2017-06-01  </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-113.html" title="你会怎么做">你会怎么做</a>
+      </h4>
+      </li>      <li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot">      <a href="/index.php?s=/vod-read-id-114.html">
+        <img class="img-responsive ff-img" data-original="http://t3.baidu.com/it/u=2709545376,1748615195&fm=20.jpg" alt="焦点访谈">
+        <p class="ff-continu"><span class="badge">
+2017-06-01  </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-114.html" title="焦点访谈">焦点访谈</a>
+      </h4>
+      </li><li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot hidden-md hidden-lg">
+            <a href="/index.php?s=/vod-read-id-120.html">
+        <img class="img-responsive ff-img" data-original="http://t2.baidu.com/it/u=4290013924,647020326&fm=20.jpg" alt="我的世界籽岷">
+        <p class="ff-continu"><span class="badge">
+2017-06-01  </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-120.html" title="我的世界籽岷">我的世界籽岷</a>
+      </h4>
+      </li><li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot hidden-md hidden-lg">
+            <a href="/index.php?s=/vod-read-id-91.html">
+        <img class="img-responsive ff-img" data-original="http://t1.baidu.com/it/u=4249472811,3830228253&fm=20.jpg" alt="泡菜帮">
+        <p class="ff-continu"><span class="badge">
+2017-06-02  </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-91.html" title="泡菜帮">泡菜帮</a>
+      </h4>
+      </li><li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot hidden-md hidden-lg">
+            <a href="/index.php?s=/vod-read-id-92.html">
+        <img class="img-responsive ff-img" data-original="http://t1.baidu.com/it/u=1864908926,3112109563&fm=20.jpg" alt="笑囧一族">
+        <p class="ff-continu"><span class="badge">
+2017-06-02  </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-92.html" title="笑囧一族">笑囧一族</a>
+      </h4>
+      </li><li class="col-md-3 col-sm-2 col-xs-4 text-center ff-col ff-vod-img-hot hidden-md hidden-lg">
+            <a href="/index.php?s=/vod-read-id-93.html">
+        <img class="img-responsive ff-img" data-original="http://t1.baidu.com/it/u=2963166995,104670025&fm=20.jpg" alt="徐老师讲故事">
+        <p class="ff-continu"><span class="badge">
+2017-06-02  </span></p>
+      </a>
+      <h4 class="ff-text-hidden">
+        <a href="/index.php?s=/vod-read-id-93.html" title="徐老师讲故事">徐老师讲故事</a>
+      </h4>
+      </li>    </ul>
+    </div><!--lg-8end -->
+    <div class="col-md-4 ff-col index-right visible-lg visible-md">
+      <div class="page-header">
+        <h4><span class="glyphicon glyphicon-signal ff-text"></span> 热播榜</h4>
+      </div>
+      <ol class="ff-vod-hot">
+        <li>
+          <a href="/index.php?s=/vod-read-id-2.html">朝闻天下</a>
+          <small class="pull-right"><strong>9</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-13.html">名段欣赏</a>
+          <small class="pull-right"><strong>9</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-16.html">新安夜空</a>
+          <small class="pull-right"><strong>9</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-18.html">晓说</a>
+          <small class="pull-right"><strong>9</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-41.html">农业气象</a>
+          <small class="pull-right"><strong>9</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-70.html">大揭秘</a>
+          <small class="pull-right"><strong>9</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-79.html">美动亚洲</a>
+          <small class="pull-right"><strong>9</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-87.html">奇葩大本营</a>
+          <small class="pull-right"><strong>9</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-88.html">纪录片编辑室</a>
+          <small class="pull-right"><strong>9</strong>.0</small>
+        </li><li>
+          <a href="/index.php?s=/vod-read-id-92.html">笑囧一族</a>
+          <small class="pull-right"><strong>9</strong>.0</small>
+        </li>      </ol>
+      <ul class="list-unstyled ff-vod-type">
+        <li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-4-type-%E8%84%B1%E5%8F%A3%E7%A7%80-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">脱口秀</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-4-type-%E7%9C%9F%E4%BA%BA%E7%A7%80-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">真人秀</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-4-type-%E9%80%89%E7%A7%80-area--year--star--state--order-hits.html" class="btn btn-sm btn-success">选秀</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-4-type-%E7%BE%8E%E9%A3%9F-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">美食</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-4-type-%E6%97%85%E6%B8%B8-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">旅游</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-4-type-%E6%B1%BD%E8%BD%A6-area--year--star--state--order-hits.html" class="btn btn-sm btn-success">汽车</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-4-type-%E8%AE%BF%E8%B0%88-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">访谈</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-4-type-%E7%BA%AA%E5%AE%9E-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">纪实</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-4-type-%E6%90%9E%E7%AC%91-area--year--star--state--order-hits.html" class="btn btn-sm btn-success">搞笑</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-4-type-%E6%83%85%E6%84%9F-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">情感</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-4-type-%E6%B8%B8%E6%88%8F-area--year--star--state--order-hits.html" class="btn btn-sm btn-default">游戏</a></li><li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-4-type-%E8%81%8C%E5%9C%BA-area--year--star--state--order-hits.html" class="btn btn-sm btn-success">职场</a></li>      </ul>
+    </div><!--lg-4 end -->
+  </div><!--row end -->
+</div>
+<div class="clearfix ff-clearfix"></div><div class="container ff-bg">
+  <div class="row">
+    <div class="col-md-8 ff-col index-left">
+    <div class="page-header">
+      <h4>
+        <span class="glyphicon glyphicon-film ff-text"></span> <a href="/index.php?s=/vod-show-id-5.html">短视频</a>
+        <small class="hidden-xs"><a href="/index.php?s=/vod-type-id-5-type--area--year--star--state--order-hits.html"></a><a href="/index.php?s=/vod-type-id-5-type--area--year--star--state--order-hits.html">更多</a></small>
+        <small class="pull-right visible-xs"><a href="/index.php?s=/vod-type-id-5-type--area--year--star--state--order-hits.html">更多</a></small>
+      </h4>
+    </div>
+    <!-- -->
+    <ul class="list-unstyled">
+          </ul>
+    </div><!--lg-8end -->
+    <div class="col-md-4 ff-col index-right visible-lg visible-md">
+      <div class="page-header">
+        <h4><span class="glyphicon glyphicon-signal ff-text"></span> 热播榜</h4>
+      </div>
+      <ol class="ff-vod-hot">
+              </ol>
+      <ul class="list-unstyled ff-vod-type">
+        <li class="col-md-3 ff-text-hidden ff-col"><a href="/index.php?s=/vod-type-id-5-type--area--year--star--state--order-hits.html" class="btn btn-sm btn-default"></a></li>      </ul>
+    </div><!--lg-4 end -->
+  </div><!--row end -->
+</div>
+<div class="clearfix ff-clearfix"></div></div>
+</div>
+<div class="container ff-bg hidden-xs">
+<div class="row">
+	<div class="col-xs-12 ff-col">
+  	<div class="page-header">
+      <h4><span class="glyphicon glyphicon-link ff-text"></span> 友情链接</h4>
+    </div>
+    <p class="ff-link">
+    <a href="http://www.feifeicms.com" target="_blank">飞飞影视导航系统</a><a href="http://www.daicuo.cc" target="_blank">做网站那些事儿</a>    </p>
+  </div>
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="container ff-bg">
+  <div class="row">
+    <div class="col-xs-12 ff-col">
+    	<div class="ff-ads-footer text-center">
+      <script type="text/javascript" src="/Runtime/Js/footer.js" charset="utf-8"></script>      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix ff-clearfix"></div>
+<div class="container ff-bg ff-footer">
+  <div class="row">
+    <div class="col-md-10 col-sm-12 col-xs-12">
+      <p>友情提示：请勿长时间观看影视，注意保护视力并预防近视，合理安排时间，享受健康生活。</p>
+      <p>网站简介：努力打造飞飞影视导航系统为最好的PHP影视系统!</p>
+      <p>版权声明：本网站为非赢利性站点，本网站所有内容均来源于互联网相关站点自动搜索采集信息，相关链接已经注明来源。</p>
+      <p>免责声明：本网站将逐步删除和规避程序自动搜索采集到的不提供分享的版权影视。本站仅供测试和学习交流。请大家支持正版。</p>
+    </div>
+    <ul class="col-md-2 hidden-sm hidden-xs">
+      <li><a href="/index.php?s=/map-show-id-rss-limit-100.html" target="_blank">rss</a></li>
+      <li><a href="/index.php?s=/map-show-id-baidu-limit-100.html" target="_blank">baidu</a></li>
+      <li><a href="/index.php?s=/map-show-id-google-limit-100.html" target="_blank">google</a></li>
+      <li><a href="/index.php?s=/map-show-id-360-limit-100.html" target="_blank">360</a></li>
+      <li><a href="http://www.feifeicms.com/" target="_blank">feifeicms 3.3.170516</a></li>
+    </ul>  
+  </div>
+</div>
+<span style="display:none"><script language="javascript" type="text/javascript" src="http://js.users.51.la/14834816.js"></script></span>
+</body>
+</html>

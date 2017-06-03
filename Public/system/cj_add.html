@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>添加资源库</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='__PUBLIC__/css/admin-style.css' />
+<script charset="utf-8" src="__PUBLIC__/jquery/1.11.3/jquery.min.js"></script>
+<script charset="utf-8" src="__PUBLIC__/js/admin.js"></script>
+<script language="javascript">
+$(document).ready(function(){
+	$("#myform").submit(function(){
+		if($feifeicms.form.empty('myform','cj_name') == false){
+			return false;
+		}
+		if($feifeicms.form.empty('myform','cj_url') == false){
+			return false;
+		}
+	});
+});
+</script>
+</head>
+<body class="body">
+<include file="./Public/system/header.html" />
+<div class="title">
+	<div class="left">资源库管理</div>
+    <div class="right"><a href="?s=Admin-Cj-Show">资源库列表</a></div>
+</div>
+<div class="add"><gt name="cj_id" value="0">
+<form action="?s=Admin-Cj-Update" method="post" name="myform" id="myform">
+<input type="hidden" name="cj_id" value="{$cj_id}">
+<else/>
+<form action="?s=Admin-Cj-Insert" method="post" name="myform" id="myform">
+</gt>
+<ul><li class="left">资源库名称：</li>
+<li class="right"><input type="text" name="cj_name" id="cj_name" value="{$cj_name}" class="w400" error="* 请填写资源站名称!"><span id="cj_name_error">*</span></li>
+</ul>
+<ul><li class="left">资源库地址：</li>
+<li class="right"><input type="text" name="cj_url" id="cj_url" value="{$cj_url}" class="w400" error="* 请填写资源站地址!"><span id="cj_url_error">*</span></li>
+</ul>
+<ul class="footer"><input type="submit" name="submit" value="提交"> <input type="reset" name="reset" value="重置"></ul>
+</form>
+</div>
+<include file="./Public/system/footer.html" />
+</body>
+</html>

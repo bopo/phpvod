@@ -1,0 +1,454 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>网站信息配置</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='__PUBLIC__/css/admin-style.css' />
+<script charset="utf-8" src="__PUBLIC__/jquery/1.11.3/jquery.min.js"></script>
+<script charset="utf-8" src="__PUBLIC__/jquery/jquery.insertsome.js"></script>
+<script charset="utf-8" src="__PUBLIC__/js/admin.js"></script>
+<script>
+function dir_html(id,value){
+	if(value){
+		$('#'+id).val(value);
+	}
+}
+function forum_type_tab($id){
+	if($id!='feifei'){
+		$('#forum_type').show();
+		$('.forum_type').hide();
+		$("#forum_"+$id).show();
+	}else{
+		$('#forum_type').hide();
+	}
+}
+function forum_type_check($forum_type){
+	if($forum_type=='uyan'){
+		$('#forum_radio_uyan').attr("checked", true);
+	}else if($forum_type=='changyan'){
+		$('#forum_radio_changyan').attr("checked", true);
+	}else{
+		$('#forum_radio_feifei').attr("checked", true);
+	}
+	forum_type_tab($forum_type);
+}
+$(document).ready(function(){
+	$("#myform").submit(function(){
+		if($feifeicms.form.empty('myform','site_name') == false){
+			return false;
+		}
+		if($feifeicms.form.empty('myform','site_domain') == false){
+			return false;
+		}
+		if($feifeicms.form.empty('myform','site_path') == false){
+			return false;
+		}	
+	});
+	$("#tabs>a").click(function(){
+		var no = $(this).attr('id');
+		var n = $("#tabs>a").length;
+		showtab('tabs',no,n);
+		$("#tabs>a").removeClass("on");
+		$(this).addClass("on");
+		return false;
+	});
+	// 鼠标光标处插入文字
+	$('a.dir').on('click', function(e){
+		$id = $(this).attr('data-id');
+		$text = $(this).text();
+		$('#'+$id).focus();
+		$('#'+$id).insert({"text":$text});
+		return false;
+	});
+	// 评论功能切换
+	$(":radio[name='config[forum_type]']").on("click", function(){
+		$id = $(this).val();
+		forum_type_tab($id);
+	});
+	forum_type_check('{$forum_type}');
+	<eq name="url_rewrite" value="1">
+	showtab('urlrewrite',1,1);
+	showtab('urlrewrites',1,1);
+	</eq>
+	<eq name="url_html" value="1">
+	showtab('htmlfilesuffix',1,1);
+	showtab('urlhtml',1,1);
+	</eq>
+	<eq name="html_cache_on" value="1">
+	showtab('htmlcache',1,1);
+	</eq>
+	<eq name="upload_thumb" value="1">
+	showtab('thumb',1,1);
+	</eq>
+	<eq name="upload_water" value="1">
+	showtab('water',1,1);
+	</eq>
+	<eq name="upload_ftp" value="1">
+	showtab('ftptab',1,1);
+	</eq>	
+});
+</script>
+<style>
+.dir{  color:#006600; font-size:14px;}
+.diri{ color:#666666; font-size:14px; }
+label{ color:#666666}
+#urlhtml1 .left,#urlhtml1 select,#urlrewrites1 .left,#datacache1 .left,#htmlcache1 .left{ color:#444}
+</style>
+</head>
+<body class="body">
+<form action="?s=Admin-Admin-Configsave" method="post" name="myform" id="myform">
+<div class="title">
+	<div class="tabs" id="tabs"><a href="javascript:void(0)" class="on" onfocus="this.blur();" id="1">基本配置</a><a href="javascript:void(0)" onfocus="this.blur();" id="2">性能优化</a><a href="javascript:void(0)" onfocus="this.blur();" id="3">URL个性化</a><a href="javascript:void(0)" onfocus="this.blur();" id="4">网页生成</a><a href="javascript:void(0)" onfocus="this.blur();" id="8">采集</a><a href="javascript:void(0)" onfocus="this.blur();" id="5">附件</a><a href="javascript:void(0)" onfocus="this.blur();" id="6">视频</a><a href="javascript:void(0)" onfocus="this.blur();" id="7">文章</a><a href="javascript:void(0)" onfocus="this.blur();" id="9">评论</a></div>
+</div>
+<div class="add">
+<div id="tabs1">
+  <ul><li class="left">网站名称：</li>
+    <li class="right"><input type="text" name="config[site_name]" id="site_name" value="{$site_name}" maxlength="50" error="* 网站名称不能为空!"><span id="site_name_error">*</span><label>请填写贵站名字。</label></li>
+  </ul>
+  <ul><li class="left">网站域名：</li>
+    <li class="right"><input type="text" name="config[site_domain]" id="site_domain" value="{$site_domain}" maxlength="50" error="* 网站域名不能为空!"><span id="site_url_error">*</span></li>
+  </ul>
+  <ul><li class="left">移动端子域名：</li>
+    <li class="right"><input type="text" name="config[site_domain_m]" id="site_domain_m" value="{$site_domain_m}" maxlength="50"> <label>留空则不自动切换到子域名，只支持如demo.feifeicms.com这样的二级子域名</label></li>
+  </ul>  
+  <ul><li class="left">安装路径：</li>
+    <li class="right"><input type="text" name="config[site_path]" id="site_path" value="{$site_path}" maxlength="20" error="* 安装路径不能为空!"><span id="site_path_error">*</span><label>网站安装路径，一般不需要修改，结尾必需加斜杆 '/'。</label></li>
+  </ul> 
+  <ul><li class="left">MYSQL数据库：</li>
+    <li class="right"><input type="text" name="config[db_name]" id="db_name" value="{$db_name}" maxlength="30" error="* MYSQL数据库名称不能为空!"><span id="db_name_error">*</span><label>已存在的MYSQL数据库。</label></li>
+  </ul>
+  <ul><li class="left">广告文件保存目录：</li>
+    <li class="right"><input type="text" name="config[admin_ads_file]" id="admin_ads_file" value="{$admin_ads_file}" maxlength="10">&nbsp;</li>
+  </ul>  
+  <ul><li class="left">备案信息：</li>
+    <li class="right"><input type="text" name="config[site_icp]" id="site_icp" value="{$site_icp}" maxlength="20">&nbsp;</li>
+  </ul>
+  <ul><li class="left">站长邮箱：</li>
+    <li class="right"><input type="text" name="config[site_email]" id="site_email" value="{$site_email}" maxlength="20">&nbsp;</li>
+  </ul> 
+   <ul><li class="left">模板主题方案：</li>
+    <li class="right"><select name="config[default_theme]" class="w128"><volist name="dir" id="admin"><option value="{$admin.filename}" <eq name="admin.filename" value="$default_theme">selected</eq>>{$admin.filename}</option></volist></select>&nbsp;</li>
+  </ul>
+  <ul><li class="left">用户交互时间间隔：</li>
+    <li class="right"><input type="text" class="w120" name="config[user_second]" maxlength="4" value="{$user_second}"><label>(两次评论/留言/顶踩/评分等间隔时间多少秒)</label>&nbsp;</li>
+  </ul>  
+  <ul><li class="left">评论与留言需审核：</li>
+    <li class="right"><input type="radio" class="radio" name="config[user_check]" value="1" <eq name="user_check" value="1">checked="checked"</eq>/>开启 <input type="radio" class="radio" name="config[user_check]" value="0" <eq name="user_check" value="0">checked="checked"</eq>/>关闭</li>
+  </ul>
+   <ul><li class="left">后台数据管理排序：</li>
+    <li class="right"><input type="radio" class="radio" name="config[admin_order_type]" value="addtime" <eq name="admin_order_type" value="addtime">checked="checked"</eq>/>时间 <input type="radio" class="radio" name="config[admin_order_type]" value="id" <eq name="admin_order_type" value="id">checked="checked"</eq>/>ID值</li>
+  </ul>  
+  <ul><li class="left">站点标题：</li>
+    <li class="right"><input type="text" name="config[site_title]" id="site_title" value="{$site_title|htmlspecialchars}" maxlength="100" class="w400">&nbsp;</li>
+  </ul> 
+  <ul><li class="left">站点关键字：</li>
+    <li class="right"><input type="text" name="config[site_keywords]" id="site_keywords" value="{$site_keywords|htmlspecialchars}" maxlength="100" class="w400">&nbsp;</li>
+  </ul> 
+  <ul><li class="left">站点描述：</li>
+      <li class="right"><input type="text" name="config[site_description]" id="site_description" value="{$site_description|htmlspecialchars}" maxlength="250" class="w400">&nbsp;</li>
+  </ul>
+  <ul><li class="left">热门搜索 一行一个<br />带超链接使用"|"来隔开</li>
+    <li class="right" style="height:115px"><textarea name="config[site_hot]" id="site_hot" style="height:100px">{$site_hot|htmlspecialchars}</textarea></li>
+  </ul> 
+  <ul><li class="left">脏话过滤 <font color="red">用|分隔</font>：</li>
+    <li class="right" style="height:115px;"><textarea name="config[user_replace]" id="user_replace" style="height:100px">{$user_replace}</textarea></li>
+  </ul>     
+  <ul>
+  <li class="left">统计代码：</li>
+  <li class="right" style="height:75px"><textarea name="config[site_tongji]" id="site_tongji" style="height:60px">{$site_tongji|htmlspecialchars}</textarea></li>
+  </ul>         
+  <ul><li class="left">版权信息：</li>
+    <li class="right" style="height:75px"><textarea name="config[site_copyright]" id="site_copyright" style="height:60px">{$site_copyright|htmlspecialchars}</textarea></li>
+  </ul>                            
+</div>
+<!-- -->
+<div id="tabs2" style="display:none;">  
+	<ul><li class="left">全站循环：</li>
+    <li class="right"><input type="text" name="config[cache_foreach]" id="cache_foreach" maxlength="8" value="{$cache_foreach}" class="w120"><label>推荐开启，模板中循环标签统一的缓存时间，建议设置为600秒，设为0该模块将不启用</label></li>
+  </ul>
+   <ul><li class="left">页面.分类页：</li>
+    <li class="right"><input type="text" name="config[cache_page_list]" id="cache_page_list" maxlength="8" value="{$cache_page_list}" class="w120"><label>推荐开启，建议设置为86400秒，设为0该模块将不启用</label></li>
+  </ul>
+  <ul><li class="left">页面.筛选页：</li>
+    <li class="right"><input type="text" name="config[cache_page_type]" id="cache_page_type" maxlength="8" value="{$cache_page_type}" class="w120"><label>推荐开启，建议设置为86400秒，设为0该模块将不启用</label></li>
+  </ul>          
+   <ul><li class="left">页面.详情页（视频）：</li>
+    <li class="right"><input type="text" name="config[cache_page_vod]" id="cache_page_vod" maxlength="8" value="{$cache_page_vod}" class="w120"><label>推荐开启，建议设置为86400秒，设为0该模块将不启用</label></li>
+  </ul> 
+   <ul><li class="left">页面.详情页（文章）：</li>
+    <li class="right"><input type="text" name="config[cache_page_news]" id="cache_page_news" maxlength="8" value="{$cache_page_news}" class="w120"><label>推荐开启，建议设置为86400秒，设为0该模块将不启用</label></li>
+  </ul>
+  <ul><li class="left">页面.详情页（专题）：</li>
+    <li class="right"><input type="text" name="config[cache_page_special]" id="cache_page_special" maxlength="8" value="{$cache_page_special}" class="w120"><label>推荐开启，建议设置为86400秒，设为0该模块将不启用</label></li>
+  </ul>
+  <ul><li class="left">页面.详情页（讨论）：</li>
+    <li class="right"><input type="text" name="config[cache_page_forum]" id="cache_page_cm" maxlength="8" value="{$cache_page_forum}" class="w120"><label>推荐开启，建议设置为86400秒，设为0该模块将不启用</label></li>
+  </ul>  
+  <ul><li class="left">数据缓存方式：</li>
+    <li class="right"><select name="config[data_cache_type]" class="w128"><option value="file">File 文件</option><option value="memcache" <eq name="data_cache_type" value="memcache">selected</eq>>Memcache</option></select> <label>推荐使用Memcached组件，如果无条件的情况下才选择File文件缓存方式</label></li>
+  </ul>
+  <ul><li class="left">模板缓存功能：</li>
+    <li class="right"><select name="config[tmpl_cache_on]" class="w128"><option value="1">开启</option><option value="0" <eq name="tmpl_cache_on" value="0">selected</eq>>关闭</option></select> <label>开启后将加快模板渲染时间，修改模板后需要清理系统缓存</label></li>
+  </ul>
+  <ul><li class="left">网页缓存功能：</li>
+    <li class="right"><select name="config[html_cache_on]" class="w128" onChange="showtab('htmlcache',this.value,1);"><option value="1">开启</option><option value="0" <eq name="html_cache_on" value="0">selected</eq>>关闭</option></select> <label>网站动态模式运行下根据URL自动生成对应的HTML缓存文件</label></li>
+  </ul>
+  <div id="htmlcache1" style="display:none">
+   <ul><li class="left">首页缓存有效期：</li>
+    <li class="right"><input type="text" name="config[html_cache_index]" id="html_cache_index" maxlength="3" value="{$html_cache_index}" class="w120"><label>设为0该模块将不启用缓存,可以为小数,单位小时</label></li>
+  </ul>
+  <ul><li class="left">筛选页缓存有效期：</li>
+    <li class="right"><input type="text" name="config[html_cache_type]" id="html_cache_type" maxlength="3" value="{$html_cache_type}" class="w120"><label>设为0该模块将不启用缓存,可以为小数,单位小时</label></li>
+  </ul>   
+  <ul><li class="left">分类页缓存有效期：</li>
+    <li class="right"><input type="text" name="config[html_cache_list]" id="html_cache_list" maxlength="3" value="{$html_cache_list}" class="w120"><label>设为0该模块将不启用缓存,可以为小数,单位小时</label></li>
+  </ul>
+  <ul><li class="left">内容页缓存有效期：</li>
+    <li class="right"><input type="text" name="config[html_cache_content]" id="html_cache_content" maxlength="3" value="{$html_cache_content}" class="w120"><label>设为0该模块将不启用缓存,可以为小数,单位小时</label></li>
+  </ul>
+  <ul><li class="left">播放页缓存有效期：</li>
+    <li class="right"><input type="text" name="config[html_cache_play]" id="html_cache_play" maxlength="3" value="{$html_cache_play}" class="w120"><label>设为0该模块将不启用缓存,可以为小数,单位小时</label></li>
+  </ul>
+  <ul><li class="left">其它缓存有效期：</li>
+    <li class="right"><input type="text" name="config[html_cache_ajax]" id="html_cache_ajax" maxlength="3" value="{$html_cache_ajax}" class="w120"><label>设为0该模块将不启用缓存,可以为小数,单位小时</label></li>
+  </ul> 
+  </div>
+</div>
+<!-- -->
+<div id="tabs3" style="display:none;">
+	<ul><li class="left">网站路径后缀：</li>
+    <li class="right"><select name="config[url_html_suffix]" class="w120"><option value=".html">.html</option><eq name="url_html_suffix" value=".htm"><option value=".htm" selected>.htm</option><else /><option value=".htm">.htm</option></eq><eq name="url_html_suffix" value=".shtml"><option value=".shtml" selected>.shtml</option><else /><option value=".shtml">.shtml</option></eq><eq name="url_html_suffix" value=".shtm"><option value=".shtm" selected>.shtm</option><else /><option value=".shtm">.shtm</option></eq><empty name="url_html_suffix"><option value="" selected>不需要后缀</option><else/><option value="">不需要后缀</option></empty></select></li> 
+  </ul>
+	<ul><li class="left">开启伪静态重写：</li>
+    <li class="right"><select name="config[url_rewrite]" class="w128"><option value="0" >关闭</option><option value="1" <eq name="url_rewrite" value="1">selected</eq>>开启</option></select></li> 
+  </ul>
+  <ul><li class="left">URL自定义开关：</li>
+    <li class="right"><select name="config[url_router_on]" class="w128"><option value="0" >关闭</option><option value="1" <eq name="url_router_on" value="1">selected</eq>>开启</option></select></li> 
+  </ul>
+	<ul><li class="left">URL自定义规则</li>
+    <li class="right" style="height:450px; text-align:left">
+    <textarea name="config[rewrite_route]" id="rewrite_route" style="height:280px; width:700px; font-size:14px">{$rewrite_route}</textarea>
+    <p>请填写简略正则表达式, 每行一条规则, 中间使用 === 隔开, 左边为站点默认 URL 模式, 右边为替换后的 URL 模式</p>
+    <p>(:num) 代表数字, (:any) 代表任意字符 如替换视频详情页规则：</p>
+    <p>vod-read-id-(:num)===video/detail/(:num)</p>
+    <p>(!) 警告: 使用此功能之前请确定你对替换有所把握, 错误的规则将导致站点不能运行</p>
+    <p>模板里面生成对应的URL链接请使用ff_url函数 <a href="http://union.feifeicms.com/v3/jump.php?id=2&version={%feifeicms_version}" target="_blank" style="color:red">获取更多帮助</a></p>
+    </li>
+  </ul>
+</div>
+<!-- -->
+<div id="tabs4" style="display:none;">
+  <ul><li class="left">网站运行模式：</li>
+    <li class="right"><select name="config[url_html]" onChange="showtab('urlhtml',this.value,1);" class="w128"><option value="0" >动态</option><option value="1" <eq name="url_html" value="1">selected</eq>>静态</option></select>&nbsp;<label>当您的网站流量非常大的时候，建议选择将一些页面生成静态，需要站长手动操作生成相关网页。</label></li> 
+  <div id="urlhtml1" style="display:none;">
+  <ul><li class="left">静态网页后缀名：</li>
+    <li class="right"><select name="config[html_file_suffix]" class="w128"><option value=".html">.html</option><eq name="html_file_suffix" value=".htm"><option value=".htm" selected>.htm</option><else /><option value=".htm">.htm</option></eq><eq name="html_file_suffix" value=".shtml"><option value=".shtml" selected>.shtml</option><else /><option value=".shtml">.shtml</option></eq><eq name="html_file_suffix" value=".shtm"><option value=".shtm" selected>.shtm</option><else /><option value=".shtm">.shtm</option></eq></select></li>         
+  </ul>   
+   <ul><li class="left">生成每页间隔(秒)：</li>
+    <li class="right"><input type="text" name="config[url_time]" id="url_time" maxlength="50" value="{$url_time}" class="w120">&nbsp;</li>        
+  </ul>
+  <ul><li class="left">每页生成数量：</li>
+    <li class="right"><input type="text" name="config[url_number]" id="url_number" maxlength="6" value="{$url_number}" class="w120">&nbsp;</li>
+  </ul>  
+  <ul><li class="left">视频分类页保存路径：</li>
+    <li class="right"><input type="text" name="config[url_vod_list]" id="url_vod_list" maxlength="150" value="{$url_vod_list}" class="w300 diri"> <select style="width:150px" onChange="dir_html('url_vod_list',this.value);"><option>常用结构</option><option value="video/{listid}/{page}">1.video/id/</option><option value="video/{md5}/{page}">2.video/md5值/</option></option><option value="video/{listdir}/{page}">3.video/listdir/</option><option value="video/{listid}-{page}">4.video/id{$html_file_suffix}</option><option value="video/{md5}-{page}">5.video/md5{$html_file_suffix}</option><option value="video/{listdir}-{page}">6.video/listdir{$html_file_suffix}</option></select> 变量：<a href="javascript:" title="分类英文名" class="dir" data-id="url_vod_list">{listdir}</a> <a href="javascript:" title="分类ID" class="dir" data-id="url_vod_list">{id}</a> <a href="javascript:" title="影片md5(id)" class="dir" data-id="url_vod_list">{md5}</a> <a href="javascript:;" class="dir" data-id="url_vod_list">{page}</a></li>
+  </ul>    
+  <ul><li class="left">视频详情页保存路径：</li>
+    <li class="right"><input type="text" name="config[url_vod_detail]" id="url_vod_detail" maxlength="150" value="{$url_vod_detail}" class="w300 diri"> <select style="width:150px" onChange="dir_html('url_vod_detail',this.value);"><option>常用结构</option><option value="video/{id}/">1.video/id/</option><option value="video/{md5}/">2.video/md5值/</option><option value="video/{pinyin}/">3.video/拼音/</option><option value="video/{id}">4.video/id{$html_file_suffix}</option><option value="video/{md5}">5.video/md5{$html_file_suffix}</option><option value="video/{pinyin}">6.video/拼音{$html_file_suffix}</option><option value="{listid}/{id}">7.listid/id{$html_file_suffix}</option><option value="{listid}/{id}/">8.listid/id/</option><option value="{listdir}/{pinyin}/">9.listdir/拼音/</option></select> 变量：<a href="javascript:"title="分类ID值" class="dir" data-id="url_vod_detail">{listid}</a> <a href="javascript:;" class="dir" data-id="url_vod_detail">{listdir}</a> <a href="javascript:;" class="dir" data-id="url_vod_detail">{pinyin}</a> <a href="javascript:;" class="dir" data-id="url_vod_detail">{id}</a> <a href="javascript:;" class="dir" data-id="url_vod_detail">{md5}</a></li>
+  </ul>
+  <ul id="playhtml1"><li class="left">视频播放页保存路径：</li>
+    <li class="right"><input type="text" name="config[url_vod_play]" id="url_vod_play" maxlength="150" value="{$url_vod_play}" class="w300 diri"> <select style="width:150px" onChange="dir_html('url_vod_play',this.value);"><option>常用结构</option><option value="video/{id}/{sid}-{pid}">1.video/id/sid-pid{$html_file_suffix}</option><option value="video/{md5}/{sid}-{pid}">2.video/md5值/sid-pid{$html_file_suffix}</option><option value="video/{pinyin}/{sid}-{pid}">3.video/拼音/sid-pid{$html_file_suffix}</option><option value="video/{id}-{sid}-{pid}">4.video/id-sid-pid{$html_file_suffix}</option><option value="video/{md5}-{sid}-{pid}">5.video/md5-sid-pid{$html_file_suffix}</option><option value="video/{pinyin}-{sid}-{pid}">6.video/拼音-{sid}-{pid}{$html_file_suffix}</option><option value="{listid}/{id}-{id}-{sid}-{pid}">7.listid/id-sid-pid{$html_file_suffix}</option><option value="{listdir}/{id}/{sid}-{pid}">8.listdir/id/sid-pid{$html_file_suffix}</option><option value="{listdir}/{pinyin}/{sid}-{pid}">9.listdir/拼音/sid-pid{$html_file_suffix}</option></select> 变量：<a href="javascript:;" class="dir" data-id="url_vod_play">{listid}</a> <a href="javascript:;" class="dir" data-id="url_vod_play">{listdir}</a> <a href="javascript:;" class="dir" data-id="url_vod_play">{pinyin}</a> <a href="javascript:;" class="dir" data-id="url_vod_play">{id}</a> <a href="javascript:;" class="dir" data-id="url_vod_play">{pid}</a> <a href="javascript:;" class="dir" data-id="url_vod_play">{sid}</a> <a href="javascript:" title="影片md5(id)" class="dir">{md5}</a></li></ul>
+  <ul><li class="left">文章分类页保存路径：</li>
+    <li class="right"><input type="text" name="config[url_news_list]" id="url_news_list" value="{$url_news_list}" class="w300 diri"> <select style="width:150px" onChange="dir_html('url_news_list',this.value);"><option>常用结构</option><option value="news/channel/{id}/{page}">1.news/channel/id/</option><option value="news/channel/{md5}/{page}">2.news/channel/md5值/</option></option><option value="news/channel/{listdir}/{page}">3.news/channel/listdir/</option><option value="news/channel/{id}-{page}">4.news/channel/id{$html_file_suffix}</option><option value="news/channel/{md5}-{page}">5.news/channel/md5{$html_file_suffix}</option><option value="news/channel/{listdir}-{page}">6.news/channel/istdir{$html_file_suffix}</option></select> 变量：<a href="javascript:" title="分类英文名" class="dir" data-id="url_news_list">{listdir}</a> <a href="javascript:" title="分类ID" class="dir" data-id="url_news_list">{id}</a> <a href="javascript:" title="影片md5(id)" class="dir" data-id="url_news_list">{md5}</a> <a href="javascript:;" class="dir" data-id="url_news_list">{page}</a></li>            
+  </ul>  
+  <ul><li class="left">文章详情页保存路径：</li>
+    <li class="right"><input type="text" name="config[url_news_detail]" id="url_news_detail" value="{$url_news_detail}" class="w300 diri"> <select style="width:150px" onChange="dir_html('url_news_detail',this.value);"><option>常用结构</option><option value="news/{id}/{page}">1.news/id/</option><option value="news/{md5}/{page}">2.news/md5值/</option><option value="news/{pinyin}/{page}">3.news/拼音/</option><option value="{listdir}/{pinyin}/{page}">4.{listdir}/拼音/</option><option value="{listdir}/{id}/{page}">5.{listdir}/id/</option><option value="news/{id}-{page}">5.news/id{$html_file_suffix}</option><option value="news/{md5}-{page}">6.news/md5{$html_file_suffix}</option><option value="news/{pinyin}-{page}">7.news/拼音{$html_file_suffix}</option><option value="{listdir}/{pinyin}-{page}">4.{listdir}/拼音.html</option><option value="{listid}/{id}-{page}">8.{listid}/id{$html_file_suffix}</option></select> 变量：<a href="javascript:;" class="dir" data-id="url_news_detail">{listid}</a> <a href="javascript:;" class="dir" data-id="url_news_detail">{listdir}</a> <a href="javascript:;" class="dir" data-id="url_news_detail">{pinyin}</a> <a href="javascript:;" class="dir" data-id="url_news_detail">{id}</a> <a href="javascript:;" class="dir" data-id="url_news_detail">{md5}</a> <a href="javascript:;" class="dir" data-id="url_news_detail">{page}</a></li>            
+  </ul>
+  <ul><li class="left">说明：</li>
+    <li class="right">以上保存路径留空则不生成相对应的模块。</li>
+  </ul>
+  </div>
+</div>
+<!-- -->
+<div id="tabs5" style="display:none;"> 
+  <ul><li class="left">图片保存路径：</li>
+    <li class="right"><input type="text" name="config[upload_path]" id="upload_path" value="{$upload_path}" maxlength="20" class="w120">&nbsp;</li>
+  </ul>
+   <ul><li class="left">图片路径保存风格：</li>
+    <li class="right"><input type="text" name="config[upload_style]" id="upload_class" value="{$upload_style}" maxlength="20" class="w120">&nbsp;</li>
+  </ul>
+   <ul><li class="left">附件上传类型：</li>
+    <li class="right"><input type="text" name="config[upload_class]" id="upload_style" value="{$upload_class}" maxlength="20" class="w120"><label>BMP格式的图片不支持水印与缩略图</label></li>
+  </ul>        
+  <ul><li class="left">批量保存远程图片数量：</li>
+    <li class="right"><input type="text" name="config[upload_http_down]" maxlength="4" value="{$upload_http_down}" class="w120">&nbsp;</li>
+  </ul>     
+   <ul><li class="left">自动下载远程图片功能：</li>
+    <li class="right"><select name="config[upload_http]" class="w128"><option value="1">开启</option><option value="0" <eq name="upload_http" value="0">selected</eq>>关闭</option></select> <label>后台添加数据与一键采集时自动保存图片</label></li>
+  </ul>                       
+  <ul><li class="left">生成缩略图功能：</li>
+    <li class="right"><select name="config[upload_thumb]" class="w128" onChange="showtab('thumb',this.value,1);"><option value="1">开启</option><option value="0" <eq name="upload_thumb" value="0">selected</eq>>关闭</option></select>&nbsp;</li>
+  </ul>
+  <ul id="thumb1" style="display:none"><li class="left">缩图图宽度与高度：</li>
+    <li class="right"><input type="text" name="config[upload_thumb_w]" value="{$upload_thumb_w}" class="w120"> X <input  type="text" name="config[upload_thumb_h]" value="{$upload_thumb_h}" class="w120"><label>(按原图比率缩小/小于该指定大小的图片将不生成缩略图)</label></li>
+  </ul>    
+  <ul><li class="left">图片加水印功能：</li>
+    <li class="right"><select name="config[upload_water]" class="w128" onChange="showtab('water',this.value,1);"><option value="1">开启</option><option value=0 <eq name="upload_water" value="0">selected</eq>>关闭</option></select>&nbsp;</li>
+  </ul>
+  <div id="water1" style="display:none">
+  <ul><li class="left">水印透明度：</li>
+    <li class="right"><input type="text" name="config[upload_water_pct]" maxlength="3" value="{$upload_water_pct}" class="w120">&nbsp;</li>
+  </ul>
+  <ul><li class="left">水印位置：</li>
+    <li class="right"><input type="text" name="config[upload_water_pos]" maxlength="1" value="{$upload_water_pos}" class="w120"><label>(0=随机,从左&gt;右,上&gt;下 可以设置1-9 9个位置)</label></li>
+  </ul>
+  <ul><li class="left">水印图片路径：</li>
+    <li class="right"><input type="text" name="config[upload_water_img]" maxlength="30" value="{$upload_water_img}">&nbsp;</li>
+  </ul>            	
+  </div>         
+  <ul><li class="left">FTP远程附件功能：</li>
+    <li class="right"><select name="config[upload_ftp]" class="w128" onChange="showtab('ftptab',this.value,1);"><option value="1">开启</option><option value="0" <eq name="upload_ftp" value="0">selected</eq>>关闭</option></select>&nbsp;</li>
+  </ul> 
+  <div id="ftptab1" style="display:none;"> 
+  <ul><li class="left">是否删除本地图片：</li>
+    <li class="right"><select name="config[upload_ftp_del]" class="w128"><option value=0>否</option><option value=1 <eq name="upload_ftp_del" value="1">selected</eq>>是</option></select><label>上传到远程服务器后是否删除本地的</label></li>
+  </ul>         
+   <ul><li class="left">FTP服务器：</li>
+    <li class="right"><input type="text" name="config[upload_ftp_host]" id="upload_ftp_host" maxlength="30" value="{$upload_ftp_host}" class="w120"><label>填写FTP服务器的IP或域名</label></li>
+  </ul>    
+  <ul><li class="left">FTP 用户：</li>
+    <li class="right"><input type="text" name="config[upload_ftp_user]" id="upload_ftp_user" value="{$upload_ftp_user}" maxlength="30" class="w120">&nbsp;</li>
+  </ul>
+  <ul><li class="left">FTP 密码：</li>
+    <li class="right"><input type="text" name="config[upload_ftp_pass]" id="upload_ftp_pass" value="{$upload_ftp_pass}" maxlength="30" class="w120">&nbsp;</li>
+  </ul> 
+  <ul><li class="left">FTP 端口：</li>
+    <li class="right"><input type="text" name="config[upload_ftp_port]" id="upload_ftp_port" value="{$upload_ftp_port}" maxlength="8" class="w120">&nbsp;</li>
+  </ul>    
+   <ul><li class="left">远程附件保存文件夹：</li>
+    <li class="right"><input type="text" name="config[upload_ftp_dir]" id="upload_ftp_dir" maxlength="50" value="{$upload_ftp_dir}" class="w120"><label>(相对于FTP服务器根目录, 如/wwwroot/upload/)</label></li>
+  </ul>                      
+  </div>
+  <ul><li class="left">远程附件访问地址：</li>
+    <li class="right"><input type="text" name="config[upload_http_prefix]" id="upload_http_prefix" maxlength="100" value="{$upload_http_prefix}" class="w300"><label>(必须/结尾,留空则不使用,如http://www.feifeicms.com/upload/)</label></li>
+  </ul>    
+</div>    
+<!-- -->
+<div id="tabs6" style="display:none;"> 
+  <ul><li class="left">播放器宽度与高度：</li>
+    <li class="right"><input  type="text" name="config[play_width]" value="{$play_width}" class="w120"> X <input  type="text" name="config[play_height]" value="{$play_height}" class="w120">&nbsp;</li>
+  </ul>                    
+  <ul><li class="left">视频片头广告时长：</li>
+    <li class="right"><input  type="text" name="config[play_second]" value="{$play_second}" class="w120 ct" maxlength="2" title="设为0则不启用">&nbsp; </li>
+  </ul>
+  <ul><li class="left">默认视频扩展分类：</li>
+    <li class="right"><input type="text" name="config[play_type]" id="play_type" value="{$play_type}" maxlength="250" class="w400">&nbsp;</li>    
+  </ul>    
+  <ul><li class="left">默认视频资源列表：</li>
+    <li class="right"><input type="text" name="config[play_state]" id="play_state" value="{$play_state}" maxlength="250" class="w400">&nbsp;</li>    
+  </ul>    
+  <ul><li class="left">默认视频地区列表：</li>
+    <li class="right"><input type="text" name="config[play_area]" id="play_area" value="{$play_area}" maxlength="250" class="w400">&nbsp;</li>    
+  </ul> 
+  <ul><li class="left">默认视频年代列表：</li>
+    <li class="right"><input type="text" name="config[play_year]" id="play_year" value="{$play_year}" maxlength="250" class="w400">&nbsp;</li>    
+  </ul>
+  <ul><li class="left">默认视频对白列表：</li>
+    <li class="right"><input type="text" name="config[play_language]" id="play_language" value="{$play_language}" maxlength="250" class="w400">&nbsp;</li>    
+  </ul>
+  <ul><li class="left">默认视频版本列表：</li>
+    <li class="right"><input type="text" name="config[play_version]" id="play_version" value="{$play_version}" maxlength="250" class="w400">&nbsp;</li>    
+  </ul>         
+   <ul><li class="left">节目缓冲广告地址：</li>
+    <li class="right"><input type="text" name="config[play_playad]" id="play_playad" value="{$play_playad}" maxlength="150" class="w400"></li>
+  </ul>
+  <ul><li class="left">云播放器调用地址：</li>
+    <li class="right"><input type="text" name="config[play_cloud]" id="play_cloud" value="{$play_cloud}" maxlength="150" class="w400">&nbsp;<label>留空则使用本地播放器，推荐使用云播放器。<a href="http://union.feifeicms.com/v3/jump.php?id=3&version={%feifeicms_version}" target="_blank" style="color:red">云播放器使用说明</a></label></li>
+  </ul>  
+  <ul><li class="left">视频解析服务地址：</li>
+    <li class="right"><input type="text" name="config[play_jiexi]" id="play_jiexi" value="{$play_jiexi}" maxlength="250" class="w400">&nbsp;<label>留空则使用官方站外分享代码播放（无版权风险）播放器变量：{name}</label></li>
+  </ul>    
+  <ul><li class="left">下载服务器组前缀：<br /><font color="red">前缀名称$$$对应地址</font><br />(一行一个)</li>
+    <li class="right" style="height:150px"><textarea name="config[play_server]" id="play_server" style="height:133px"><volist name="play_server" id="feifei">{$key}$$${$feifei}<php>echo(chr(13));</php></volist></textarea></li>
+  </ul>
+</div>
+<!-- -->
+<div id="tabs7" style="display:none;">
+  <ul><li class="left">默认文章扩展分类：</li>
+    <li class="right"><input type="text" name="config[news_type]" id="news_type" value="{$news_type}" maxlength="250" class="w400">&nbsp;</li>
+  </ul>
+</div>
+<!-- -->
+<div id="tabs8" style="display:none;">
+  <ul><li class="left">采集伪原创：</li>
+    <li class="right"><select name="config[collect_original]" class="w128"><option value="1">开启</option><option value="0" <eq name="collect_original" value="0">selected</eq>>关闭</option></select><label>在采集数据时自动做同义词seo伪造</label></li>
+  </ul>
+  <ul><li class="left">自动生成TAG：</li>
+    <li class="right"><select name="config[collect_tags]" class="w128"><option value="1">开启</option><option value="0" <eq name="collect_tags" value="0">selected</eq>>关闭</option></select><label>添加数据时是否自动生成TAG</label></li>
+  </ul>    
+  <ul><li class="left">采集相似度设置：</li>
+    <li class="right"><input type="text" name="config[collect_name]" id="collect_name" value="{$collect_name}" maxlength="5" class="w120" title="按名称结尾，减去多少个字符">&nbsp;<label>使用此功能可以减少重名，但会加重采集时的服务器负担(0不检查)</label></li>
+  </ul>    
+  <ul><li class="left">采集跳转时间间隔：</li>
+    <li class="right"><input type="text" name="config[collect_time]" id="collect_time" value="{$collect_time}" maxlength="5" class="w120">&nbsp;<label>每一页采集完毕后暂停几秒</label></li>
+  </ul>
+  <ul><li class="left">总人气随机最大值：</li>
+    <li class="right"><input type="text" name="config[collect_hits]" id="collect_hits" value="{$collect_hits}" maxlength="5" class="w120">&nbsp;</li>
+  </ul> 
+  <ul><li class="left">顶踩随机最大值：</li>
+    <li class="right"><input type="text" name="config[collect_updown]" id="collect_updown" value="{$collect_updown}" maxlength="5" class="w120">&nbsp;</li>
+  </ul>
+  <ul><li class="left">评分随机最大值：</li>
+    <li class="right"><input type="text" name="config[collect_gold]" id="collect_gold" value="{$collect_gold}" maxlength="1" class="w120">&nbsp;</li>
+  </ul>
+  <ul><li class="left">评分人数随机最大值：</li>
+    <li class="right"><input type="text" name="config[collect_golder]" id="collect_golder" value="{$collect_golder}" maxlength="5" class="w120">&nbsp;</li>
+  </ul>
+  <ul><li class="left">第三方采集插件入库密码：</li>
+    <li class="right"><input type="text" name="config[collect_passwd]" id="collect_passwd" value="{$collect_passwd}" class="w120">&nbsp;</li>
+  </ul>
+  <ul><li class="left">资源库API接口IP授权：</li>
+    <li class="right"><textarea name="config[collect_ips]" id="collect_ips" style="height:100px">{$collect_ips}</textarea><label>留空表示开放给所有人采集，多个IP用,号分隔</label></li>
+  </ul>
+</div>
+<!-- -->
+<div id="tabs9" style="display:none;">
+  <ul><li class="left">评论功能选择：</li>
+    <li class="right" style="text-align:left">
+    <input type="radio" class="radio" name="config[forum_type]" id="forum_radio_feifei" value="feifei"/>系统自带
+    <input type="radio" class="radio" name="config[forum_type]" id="forum_radio_uyan" value="uyan"/>有言
+    <input type="radio" class="radio" name="config[forum_type]" id="forum_radio_changyan"value="changyan"/>畅言
+    </li>
+  </ul>
+  <ul id="forum_type" style="display:none;">
+  	<li class="left">社交插件参数配置：</li>
+    <li class="right forum_type" id="forum_uyan" style="display:none;">
+    <input type="text" name="config[forum_type_uyan_uid]" value="{$forum_type_uyan_uid|default='1528513'}" maxlength="50" class="w400">
+    <label>用户ID</label>
+    </li>
+    <li class="right forum_type" id="forum_changyan" style="display:none;">
+    <p><input type="text" name="config[forum_type_changyan_appid]" value="{$forum_type_changyan_appid|default='cysXPib5E'}" maxlength="100" class="w400">
+    <label>APPID</label></p>
+    <p><input type="text" name="config[forum_type_changyan_conf]" value="{$forum_type_changyan_conf|default='prod_68505537e56f813cfafdcf88027d242e'}" maxlength="100" class="w400">
+    <label>CONF</label></p>
+    </li>
+  </ul>
+  <ul><li class="left">SEO标题：</li>
+      <li class="right"><input type="text" name="config[forum_seo_title]" id="forum_seo_title" value="{$forum_seo_title|htmlspecialchars}" maxlength="100" class="w400">&nbsp;</li>
+    </ul>
+  <ul><li class="left">SEO关键字：</li>
+    <li class="right"><input type="text" name="config[forum_seo_keywords]" id="forum_seo_keywords" value="{$forum_seo_keywords|htmlspecialchars}" maxlength="150" class="w400">&nbsp;</li>
+  </ul> 
+  <ul><li class="left">SEO描述：</li>
+      <li class="right" style="text-align:left"><input type="text" name="config[forum_seo_description]" id="forum_seo_description" value="{$forum_seo_description|htmlspecialchars}" maxlength="250" class="w400"></li>
+  </ul>
+</div>
+<!-- -->
+<ul class="footer">
+	<input type="submit" name="submit" value="提交"> <input type="reset" name="reset" value="重置">
+</ul>
+</div>
+</form>
+<include file="./Public/system/footer.html" />
+</body>
+</html>

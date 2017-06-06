@@ -59,4 +59,3 @@ class HitsAction extends HomeAction{
 		return $hits;
 	}
 }
-?>

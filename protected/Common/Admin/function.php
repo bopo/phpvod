@@ -253,4 +253,3 @@ function ff_tpl_name($filename){
 		}
 	}
 }
-?>

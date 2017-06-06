@@ -1,13 +1,11 @@
 <?php
-class AjaxAction extends HomeAction
-{
-	public function _empty($action) 
-	{
-		$this->_empty_cm($action); 
-	} 
+class AjaxAction extends HomeAction{
 	
-	protected function _empty_cm($action)
-	{
-		$this->display('Home:ajax_'.$action); 
+  public function _empty($action){
+	 $this->_empty_cm($action);
+	}
+	
+	protected function _empty_cm($action){
+		$this->display('Home:ajax_'.$action);
 	}
 }

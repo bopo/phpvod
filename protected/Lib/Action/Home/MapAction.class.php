@@ -10,4 +10,3 @@ class MapAction extends HomeAction{
 		$this->display('Home:map_'.$params['id'],'utf-8','text/xml'); 
 	}	
 }
-?>

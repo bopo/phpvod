@@ -1,5 +1,6 @@
 <?php
-class ForumModel extends RelationModel {
+class ForumModel extends RelationModel 
+{
 	
 	protected $_validate = array(
 		array('forum_vcode','require','请输入验证码!',1,'',1),
@@ -34,94 +35,130 @@ class ForumModel extends RelationModel {
 	);
 	
 	//检测验证码
-	public function check_vcode($vcode){
-		if($_SESSION['verify'] != md5($vcode)){
+	public function check_vcode($vcode)
+	{
+		if($_SESSION['verify'] != md5($vcode))
+		{
 			return false;
 		}
+
 		return true;
 	}
 	
 	//检测指定时间内重复评论
-	public function check_cookie($cookie){
-		if(C('user_second')){
-			if(isset($_COOKIE[$cookie])){
+	public function check_cookie($cookie)
+	{
+		if(C('user_second'))
+		{
+			if(isset($_COOKIE[$cookie]))
+			{
 				return false;
 			}
 		}
 	}
 	
 	//过滤脏话与安全	
-	public function get_forum_content($str){
+	public function get_forum_content($str)
+	{
 		$array = explode('|',C('user_replace'));
 		return str_replace($array, '***', remove_xss(h($str)) );
 	}	
 	
 	// 自动填充
-	public function get_userid(){
+	public function get_userid()
+	{
 		$userid = intval($_COOKIE['ff_user_id']);
-		if ($userid) {
+		
+		if ($userid) 
+		{
 			return $userid;
 		}
+
 		return 1;
 	}
 	
 	// 评论状态
-	public function get_status(){
-		if(C('user_check')){
+	public function get_status()
+	{
+		if(C('user_check'))
+		{
 			return 0;
 		}
+
 		return 1;
 	}
 	
 	// 通过ID查询详情数据
-	public function ff_find($field = '*', $where, $cache_name=false, $cache_time=0, $relation=true, $order=false){
+	public function ff_find($field = '*', $where, $cache_name=false, $cache_time=0, $relation=true, $order=false)
+	{
 		//优先缓存读取数据
-		if( $cache_time && $cache_name){
+		if( $cache_time && $cache_name)
+		{
 			$cache_info = S($cache_name);
-			if($cache_info){
+
+			if($cache_info)
+			{
 				return $cache_info;
 			}
 		}
+
 		//数据库获取数据
 		$info = $this->field($field)->where($where)->relation($relation)->order($order)->find();
 		//dump($this->getLastSql());
-		if($info){
-			if( $cache_time && $cache_name ){
+
+		if($info)
+		{
+			if( $cache_time && $cache_name )
+			{
 				S($cache_name, $array_detail, $cache_time);
-			}
-    	return $info;
-    }
+			} 
+			return $info; 
+		}
+		
 		$this->error = '数据不存在！';
 		return false;
 	}
 	
 	// 新增或更新
-	public function ff_update($data){
+	public function ff_update($data)
+	{
 		// 创建安全数据对象TP
 		$data = $this->create($data);
-		if(false === $data){
+
+		if(false === $data)
+		{
 			$this->error = $this->getError();
 			return false;
 		}
+
 		/* 添加或修改行为 */
-		if(empty($data['forum_id'])){
+		if(empty($data['forum_id']))
+		{
 			$data['forum_id'] = $this->add();
-			if(!$data['forum_id']){
+
+			if(!$data['forum_id'])
+			{
 				$this->error = $this->getError();
 				return false;
 			}
+
 			//cookie防刷新
-			if($data['forum_cookie'] && C('user_second')){
+			if($data['forum_cookie'] && C('user_second'))
+			{
 				setcookie($data['forum_cookie'], 'true', time()+intval(C('user_second')));
 			}
-		} else {
+		} 
+		else 
+		{
 			$status = $this->save();
-			if(false === $status){
+
+			if(false === $status)
+			{
 				$this->error = $this->getError();
 				return false;
 			}
 		}
+		
 		return $data;
 	}	
 }
-?>

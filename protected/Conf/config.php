@@ -28,4 +28,3 @@ $array = array(
   //'SHOW_DB_TIMES'		=> true,   // 显示数据库查询和写入次数	
 );
 return array_merge($config,$array);
-?>

@@ -37,4 +37,3 @@ class GoldAction extends HomeAction{
 		$this->ajaxReturn(array('gold'=>$array[$model.'_gold'],'golder'=>$array[$model.'_golder']), "感谢您的参与，评分成功！", 1);		
 	}
 }
-?>

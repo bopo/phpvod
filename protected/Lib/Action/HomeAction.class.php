@@ -7,4 +7,3 @@ class HomeAction extends AllAction{
 		$this->assign($this->Lable_Style());
 	}
 }
-?>

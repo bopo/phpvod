@@ -118,4 +118,3 @@ class ApiAction extends HomeAction{
 		return $array_url[$key];
 	}							
 }
-?>

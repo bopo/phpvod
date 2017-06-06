@@ -45,4 +45,3 @@ class SpecialAction extends HomeAction{
 		return $this->Lable_Special_Read($info);
 	}
 }
-?>

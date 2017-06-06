@@ -15,4 +15,3 @@ return array(
 	'login_password_not'=>'用户密码错误，请重新输入！',
 	'login_out'=>'已经安全关闭管理后台！',			
 );
-?>

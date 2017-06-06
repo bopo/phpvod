@@ -1,7 +1,10 @@
 <?php
-class EmailModel extends Model {
-	public function email($address,$username,$title,$content){
+class EmailModel extends Model 
+{
+	public function email($address,$username,$title,$content)
+	{
 		require THINK_PATH.'/Vendor/Email/class.phpmailer.php';
+		
 		$mail = new PHPMailer();//建立邮件发送类
 		$mail->IsSMTP(); // 使用SMTP方式发送 
 		$mail->Host = "smtp.qq.com"; // 您的企业邮局域名 
@@ -17,12 +20,14 @@ class EmailModel extends Model {
 		//$mail->AddAttachment("/var/tmp/file.tar.gz"); // 添加附件
 		//$mail->IsHTML(true); // set email format to HTML //是否使用HTML格式
 		//$mail->AltBody = "This is the body in plain text for non-HTML mail clients"; //附加信息，可以省略
-		if(!$mail->Send()) {
+		
+		if(!$mail->Send()) 
+		{
 			echo "邮件发送失败. <p>";
 			echo "错误原因: " . $mail->ErrorInfo;
 			exit;
 		}
+
 		echo "邮件发送成功。"; 
 	}	
 }
-?>

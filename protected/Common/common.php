@@ -1730,4 +1730,3 @@ function list_sort_by($list,$field, $sortby='asc') {
    }
    return false;
 }
-?>

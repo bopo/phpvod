@@ -22,4 +22,3 @@ class BaseAction extends AllAction{
 		}
   }
 }
-?>

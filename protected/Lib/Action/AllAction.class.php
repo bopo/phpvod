@@ -379,4 +379,3 @@ class AllAction extends Action{
 		return $array;		
 	}
 }
-?>

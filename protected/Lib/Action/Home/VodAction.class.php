@@ -139,4 +139,3 @@ class VodAction extends HomeAction{
 		return $this->Lable_Vod_List($params, $info);
 	}
 }
-?>

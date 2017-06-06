@@ -1,14 +1,11 @@
 <?php
-class ForumAction extends HomeAction
-{
-	public function _empty($action)
-	{
-		$this->_empty_forum($action);
+class ForumAction extends HomeAction{
+
+	public function _empty($action){
+	 $this->_empty_forum($action);
 	}
 	
-	protected function _empty_forum($action)
-	{
-		//channel vod news special ajax post
+	protected function _empty_forum($action){//channel vod news special ajax post
 		/*
 		$tag = 'sid:1;limit:2;cache_name:default;cache_time:0;page_is:true;page_id:comment;page_p:2;order:forum_addtime;sort:desc';
 		$data = ff_mysql_forum($tag);
@@ -19,27 +16,19 @@ class ForumAction extends HomeAction
 	}
 	
 	//讨论详情页展示
-	public function detail()
-	{
+	public function detail(){
 		$info = $this->label();
 		$where = array();
 		$where['forum_id'] = array('eq', $info['forum_id']);
-	
-		if(C('user_check'))
-		{
+		if(C('user_check')){
 			$where['forum_status'] = 1;
 		}
-		
 		$detail = D('Forum')->ff_find('*', $where, 'cache_page_forum_'.$info['id'], intval(C('cache_page_forum')), 'User');
-
-		if(!$detail)
-		{
+		if(!$detail){
 			$this->assign("jumpUrl", C('site_path'));
 			$this->error('评论已删除！');
 		}
-		
 		$detail = $this->Lable_Forum_Detail($info, $detail);
-		
 		$this->assign($info);
 		$this->assign($detail);
 		$this->display($detail['forum_skin']);
@@ -112,4 +101,3 @@ class ForumAction extends HomeAction
 		return $this->Lable_Forum($get);
 	}
 }
-?>

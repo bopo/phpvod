@@ -57,4 +57,3 @@ class UpdownAction extends HomeAction{
 		$this->ajaxReturn(array('up'=>$array[$model.'_up'],'down'=>$array[$model.'_down']), "操作成功！", 1);		
 	}	
 }
-?>

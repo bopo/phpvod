@@ -27,4 +27,3 @@ class PostAction extends HomeAction{
 		echo $data;
   }					
 }
-?>

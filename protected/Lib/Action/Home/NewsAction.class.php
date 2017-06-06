@@ -103,4 +103,3 @@ class NewsAction extends HomeAction{
 		return $this->Lable_News_List($params, $info);
 	}			
 }
-?>
